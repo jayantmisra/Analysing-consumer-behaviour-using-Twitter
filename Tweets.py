@@ -1,34 +1,46 @@
-# This code is just written to take an idea on how to fetch tweets
-# Unlike this code, the final implementation would not use Tweepy library and tweets will be stored in SQL database
+# importing required libraries
 
+import requests
+import os
+import json
 
-import tweepy
+# for preprocessing twitter data
 import pandas as pd
-import csv
-#authentication
 
-# I removed the keys and tokens 
-api_key = ""
-api_secret = ""
-access_token = ""
-access_token_secret = ""
 
-auth = tweepy.OAuthHandler(api_key, api_secret)
-auth.set_access_token(access_token, access_token_secret)
+#MyBearerToken: AAAAAAAAAAAAAAAAAAAAAGjjVgEAAAAAPswsQesNfrnWbjovEBsb2nHkB8g%3DbUaNGMAsVRxWVWdnHMIgeqYEiYRYq2OOELMChMymnmslznvcMO
 
-api = tweepy.API(auth)
 
-#printing the Username of the developer after authentication
-print(api.verify_credentials().screen_name)
+# function to recieve bearer token from the user
+def enter_bearer_token():
+    bt = input("Enter the Bearer Token :");
+    return bt
 
-product_keyword = 'Uber'
-no_of_tweets = 100
 
-tweets = tweepy.Cursor(api.search_tweets, q=product_keyword).items(no_of_tweets)
+# function to create url 
+def create_tweet_url(brand, no_of_tweets):
+    max_tweets = "max_results={}".format(no_of_tweets) 
+    url = "https://api.twitter.com/1.1/search/tweets.json?q=%40{}&{}".format(brand,max_tweets)
+    return url
 
-tweets_list = [[tweet.user.id, tweet.user.name, tweet.id, tweet.user.location, tweet.created_at, tweet.text] for tweet in tweets]
+# for authentication and getting json response for the URL requests
+def twitter_auth_response(bt, url):
+    header = {"Authorization": "Bearer {}".format(bt)}
+    response = requests.request("GET", url, headers=header) 
+    return response.json()
 
-tweets_df = pd.DataFrame(tweets_list, columns = ['UserID','Name','TweetID','User Location','Date and Time','Text'])
 
-#converting the dataframe to csv file
-tweets_df.to_csv('test.csv')
+# main method
+def main():
+    brand_name = input("Enter the brand name:")
+    no_of_tweets = input("Enter the number of tweets:")
+    url = create_tweet_url(brand_name, no_of_tweets)
+    
+    bearer_token = enter_bearer_token()
+    respjson = twitter_auth_response(bearer_token, url)
+    print(json.dumps(respjson))
+
+    
+# calling the main function
+if __name__ == "__main__":
+    main()
