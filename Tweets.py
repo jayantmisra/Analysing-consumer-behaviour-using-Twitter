@@ -21,6 +21,7 @@ def enter_bearer_token():
 def create_tweet_url(brand, no_of_tweets):
     max_tweets = "max_results={}".format(no_of_tweets) 
     url = "https://api.twitter.com/1.1/search/tweets.json?q=%40{}&{}".format(brand,max_tweets)
+    print(url)
     return url
 
 # for authentication and getting json response for the URL requests
@@ -28,8 +29,7 @@ def twitter_auth_response(bt, url):
     header = {"Authorization": "Bearer {}".format(bt)}
     response = requests.request("GET", url, headers=header) 
     return response.json()
-
-
+    
 # main method
 def main():
     brand_name = input("Enter the brand name:")
@@ -38,7 +38,10 @@ def main():
     
     bearer_token = enter_bearer_token()
     respjson = twitter_auth_response(bearer_token, url)
-    print(json.dumps(respjson))
+    
+    # converting raw json data into a pandas dataframe
+    df = pd.DataFrame(respjson["statuses"])
+    print(df)
 
     
 # calling the main function
