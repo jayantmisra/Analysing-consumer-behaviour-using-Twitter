@@ -30,7 +30,6 @@ def sentiments(tweets):
 
 # main method
 def main():
-    #bearer_token = input("Enter the Bearer Token :")
     api_key = "YJKQrvmFj4IOSv27nonp8aBGx"
     api_secret = "3wDOUZcAAeTGvH4cNBjgAGYJ2gqYqOEc80rUI3oanGl9igjqbG"
     access_token = "1364148883329220609-WEj8Ijit8g79xor6qCRqJ7pMHAqdIe"
