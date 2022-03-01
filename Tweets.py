@@ -1,49 +1,50 @@
 # importing required libraries
 
-import requests
-import os
-import json
-
-# for preprocessing twitter data
+import tweepy
 import pandas as pd
 
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
-#MyBearerToken: AAAAAAAAAAAAAAAAAAAAAGjjVgEAAAAAPswsQesNfrnWbjovEBsb2nHkB8g%3DbUaNGMAsVRxWVWdnHMIgeqYEiYRYq2OOELMChMymnmslznvcMO
-
-
-# function to recieve bearer token from the user
-def enter_bearer_token():
-    bt = input("Enter the Bearer Token :");
-    return bt
-
-
-# function to create url 
-def create_tweet_url(brand, no_of_tweets):
-    max_tweets = "max_results={}".format(no_of_tweets) 
-    url = "https://api.twitter.com/1.1/search/tweets.json?q=%40{}&{}".format(brand,max_tweets)
-    print(url)
-    return url
-
-# for authentication and getting json response for the URL requests
-def twitter_auth_response(bt, url):
-    header = {"Authorization": "Bearer {}".format(bt)}
-    response = requests.request("GET", url, headers=header) 
-    return response.json()
+# function for authentication
+def authenticate(api_key,api_secret,access_token,access_token_secret):
+    auth = tweepy.OAuthHandler(api_key, api_secret)
+    auth.set_access_token(access_token, access_token_secret)
+    api = tweepy.API(auth)  
+    print(api.verify_credentials().screen_name)
+    return api
     
+# function to recieve data
+def tweet_data(api, keyword, max_r):
+    tweets = tweepy.Cursor(api.search_tweets, q=keyword).items(max_r)
+    tweets_list = [[tweet.user.id, tweet.user.name, tweet.id, tweet.user.location, tweet.created_at, tweet.text] for tweet in tweets]
+    tweets_df = pd.DataFrame(tweets_list, columns = ['UserID','Name','TweetID','User Location','Date and Time','Text'])
+    return tweets_df
+    
+# function to perform Sentiment Analysis
+def sentiments(tweets):
+    analyzer = SentimentIntensityAnalyzer()
+    tweets['scores'] = tweets['Text'].apply(lambda Text: analyzer.polarity_scores(Text))
+    tweets['compound'] = tweets['scores'].apply(lambda score_dict: score_dict['compound'])
+    tweets['comp_score'] = tweets['compound'].apply(lambda c: 'positive' if c>=0 else 'negative')
+    return tweets
+
 # main method
 def main():
-    brand_name = input("Enter the brand name:")
-    no_of_tweets = input("Enter the number of tweets:")
-    url = create_tweet_url(brand_name, no_of_tweets)
+    #bearer_token = input("Enter the Bearer Token :")
+    api_key = "YJKQrvmFj4IOSv27nonp8aBGx"
+    api_secret = "3wDOUZcAAeTGvH4cNBjgAGYJ2gqYqOEc80rUI3oanGl9igjqbG"
+    access_token = "1364148883329220609-WEj8Ijit8g79xor6qCRqJ7pMHAqdIe"
+    access_token_secret = "LNZWMyDykX0x2oHe5i8z3dLF1g4lMWQsSszaZDNNJsECE"
     
-    bearer_token = enter_bearer_token()
-    respjson = twitter_auth_response(bearer_token, url)
+    keyword = input("Enter the keyword :")
+    max_r = input("Enter the max number of tweets required :")
     
-    # converting raw json data into a pandas dataframe
-    df = pd.DataFrame(respjson["statuses"])
-    print(df)
-
+    api = authenticate(api_key,api_secret,access_token,access_token_secret)
+    tweets = tweet_data(api, keyword, int(max_r))
+    
+    analysed_tweets = sentiments(tweets)
+    print(analysed_tweets)
     
 # calling the main function
-if __name__ == "__main__":
+if __name__ ==  "__main__":
     main()
