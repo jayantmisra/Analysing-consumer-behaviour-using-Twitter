@@ -5,7 +5,6 @@ from matplotlib.cm import RdYlGn
 from matplotlib.colors import to_hex
 import gmaps.geojson_geometries
 from sklearn.preprocessing import minmax_scale
-import matplotlib.pyplot as plt
 from ipywidgets.embed import embed_minimal_html
 import gmaps
 import gmaps.datasets
@@ -16,6 +15,7 @@ gmaps.configure('AIzaSyDYXPLgcTlgMqebFc_da8nO72--5XS5CZ8')
 
 
 def create_clusters(locations):
+    #number of clusters adjusted here
     kmeans = KMeans(n_clusters=20, init='k-means++', random_state=10, max_iter=200)
     y_kmeans = kmeans.fit_predict(locations[['Longitude', 'Latitude']])
     locations['cluster'] = y_kmeans
@@ -142,9 +142,12 @@ def scatter_plot(map_fig, tweets):
 m = gmaps.Map()
 tweet_data = pd.read_csv('location_test.csv')
 
+
+####UNCOMMENT FOR LAYER####
+
 #cluster_map(m, tweet_data)
 #heatmap_layer(m, tweet_data)
-#geojson_layer(m, tweet_data)
+geojson_layer(m, tweet_data)
 #pie_chart_sentiment(clusters.iloc[2])
 #scatter_plot(m, tweet_data)
 embed_minimal_html('export.html', views=[m])
