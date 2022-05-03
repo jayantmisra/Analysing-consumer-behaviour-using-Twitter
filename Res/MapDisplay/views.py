@@ -1,5 +1,7 @@
+import csv
 from django.shortcuts import redirect, render
 import pandas as pd
+import requests
 from sklearn.cluster import KMeans
 import numpy as np
 from matplotlib.cm import RdYlGn
@@ -9,8 +11,40 @@ from sklearn.preprocessing import minmax_scale
 from ipywidgets.embed import embed_minimal_html
 import gmaps
 import gmaps.datasets
+import json
 # import json
 # Create your views here.
+
+
+def baidu(request):
+    def gain_location(address):
+        api_url = "https://api.map.baidu.com/geocoding/v3/?address={address}&output=json&ak=nuWcnCwfhh2ERziyZiqvS6dHomiIMVEd&callback=showLocation".format(
+            address=address)
+        r = requests.get(api_url)
+        r = r.text
+        r = r.strip('showLocation&&showLocation(')
+        r = r.strip(')')
+        jsonData = json.loads(r)
+        return jsonData
+    with open(r'MapDisplay\11.csv', encoding='UTF-8') as csvfile:
+        reader = csv.reader(csvfile)
+        for line in reader:
+            if reader.line_num == 1:
+                continue
+            if gain_location(line[0]).get('result', False):
+                try:
+                    lng = gain_location(line[0])[
+                        'result']['location']['lng']  # 经度
+                    lat = gain_location(line[0])[
+                        'result']['location']['lat']  # 纬度
+                    count = line[1]  # 地名计数
+                    # 将经度，纬度，计数变成格式
+                    str_temp = '{"lat":' + str(lat) + ',"lng":' + \
+                        str(lng) + ',"count":' + str(count) + '},'
+                    print(str_temp)
+                except:
+                    print(line[0])  # 打印出出问题的地名
+    return render(request, 'heatmap.html')
 
 
 def md(request):
@@ -18,7 +52,7 @@ def md(request):
 
 
 def plotting(request):
-    gmaps.configure('AIzaSyDYXPLgcTlgMqebFc_da8nO72--5XS5CZ8')
+    gmaps.configure('AIzaSyAcvMVkUZMQodi6ga8s5yeewBq1VTxfZ_4')
 
     figure_layout = {
         'width': '400px',
