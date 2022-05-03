@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from login.models import Question, Student
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
+from MapDisplay import views
 
 # Create your views here.
 
@@ -22,6 +23,7 @@ def index(request):
 @csrf_exempt
 def signin(request):
     request.session = {}
+    views.plotting(request)
     try:
         account = request.POST['usr']
         password = md5(request.POST['pwd'].encode()).hexdigest()

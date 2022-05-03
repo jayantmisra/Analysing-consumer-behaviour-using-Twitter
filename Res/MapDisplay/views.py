@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 import pandas as pd
 from sklearn.cluster import KMeans
 import numpy as np
@@ -13,8 +13,8 @@ import gmaps.datasets
 # Create your views here.
 
 
-def tt(request):
-    return render(request, 'map.html', {'msg': "successful"})
+def md(request):
+    return render(request, 'map.html', {'msg': None})
 
 
 def plotting(request):
@@ -165,4 +165,3 @@ def plotting(request):
     # pie_chart_sentiment(clusters.iloc[2])
     # scatter_plot(m, tweet_data)
     embed_minimal_html('templates/map.html', views=[m])
-    return render(request, 'map.html', {'msg': None})
