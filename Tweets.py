@@ -58,7 +58,7 @@ def main():
 
     api = authenticate(api_key, api_secret, access_token, access_token_secret)
     tweets = tweet_data(api, keyword, int(max_r))
-
+    # print(tweets['User Location'])
     analysed_tweets = sentiments(tweets)
     print(analysed_tweets)
     # 'analysed_tweets' is the final data yet

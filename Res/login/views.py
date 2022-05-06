@@ -22,7 +22,6 @@ def index(request):
 
 @csrf_exempt
 def signin(request):
-    views.plotting(request)
     request.session = {}
     try:
         account = request.POST['usr']

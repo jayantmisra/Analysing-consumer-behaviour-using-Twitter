@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Heatmaps</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: "Roboto", "sans-serif";
+        line-height: 30px;
+        padding-left: 10px;
+      }
+      #floating-panel {
+        background-color: #fff;
+        border: 1px solid #999;
+        left: 25%;
+        padding: 5px;
+        position: absolute;
+        top: 10px;
+        z-index: 5;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="floating-panel">
+      <button onclick="toggleHeatmap()">Toggle Heatmap</button>
+      <button onclick="changeGradient()">Change gradient</button>
+      <button onclick="changeRadius()">Change radius</button>
+      <button onclick="changeOpacity()">Change opacity</button>
+      <form action="">
+        <input type="text" value="Enter the key word here" id="keyWord" />
+        <input type="button" value="search" id="submit" />
+      </form>
+    </div>
+    <div id="map"></div>
+    <script type="text/javascript">
+      window.onload = function () {
+        var key = document.getElementById("keyWord");
+        key.onfocus = function () {
+          key.value = "";
+        };
+        key.onblur = function () {
+          if (key.value == "") {
+            key.value = "Enter the key word here";
+          }
+        };
+      };
+    </script>
+    <script type="text/javascript">
+          // This example requires the Visualization library. Include the libraries=visualization
+          // parameter when you first load the API. For example:
+          //<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcvMVkUZMQodi6ga8s5yeewBq1VTxfZ_4&libraries=visualization">
+          var loc = {{loc|safe}}
+          var map, heatmap;
+          place = []
+          function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+              zoom: 3,
+              center: { lat: 51.5, lng: -0.1 },
+              mapTypeId: "satellite",
+            });
+
+            heatmap = new google.maps.visualization.HeatmapLayer({
+              data: getPoints(),
+              map: map,
+              radius: 30,
+              opacity: 0.8,
+              gradient: gradient,
+            });
+          }
+          //
+          var gradient = [
+            "rgba(0, 255, 0, 0)",
+            "rgba(255, 255, 0, 1)",
+            //'rgba(50, 120, 205, 1)',
+            //'rgba(100, 90, 155, 1)',
+            //'rgba(150, 60, 105, 1)',
+            //'rgba(200, 30, 55, 1)',
+            "rgba(255, 0, 0, 1)",
+          ];
+          function toggleHeatmap() {
+            heatmap.setMap(heatmap.getMap() ? null : map);
+          }
+
+          // Heatmap data:  Points，
+          function getPoints() {
+            for(i in loc){
+              var l = new google.maps.LatLng(loc[i].lat, loc[i].long);
+                place.push({
+                  "location": l,
+                  "weight": 5
+                });
+                //alert(place);
+                //alert(place[i].location)
+            }
+            //alert(place[5].location)
+            //alert(place[5].weight)
+            return place;
+              //new google.maps.LatLng(37.782551, -122.445368),
+              //{location:new google.maps.LatLng(37.782551, -122.445368), weight:20},
+              //long是经，lat是纬度
+              /*
+               function getPoints() {
+            return [
+      //new google.maps.LatLng(37.782551, -122.445368),
+      //{location:new google.maps.LatLng(37.782551, -122.445368), weight:20},
+      {location:new google.maps.LatLng(37.782745, -122.444586), weight:3},
+      {location:new google.maps.LatLng(37.783100, -122.441461), weight:7},
+      {location:new google.maps.LatLng(37.783206, -122.440829), weight:8},
+      {location:new google.maps.LatLng(37.783273, -122.440324), weight:19}
+            ];
+          }
+          */
+          }
+    </script>
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcvMVkUZMQodi6ga8s5yeewBq1VTxfZ_4&sensor=false&language=en&v=3&libraries=visualization&callback=initMap"
+    ></script>
+  </body>
+</html>
