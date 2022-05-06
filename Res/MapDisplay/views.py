@@ -58,7 +58,7 @@ def plotting(request):
         auth = tweepy.OAuthHandler(api_key, api_secret)
         auth.set_access_token(access_token, access_token_secret)
         api = tweepy.API(auth)
-        print(api.verify_credentials().screen_name)
+        # print(api.verify_credentials().screen_name)
         return api
 
         # function to recieve data
@@ -71,7 +71,7 @@ def plotting(request):
         # Converting the data to Pandas DataFrame
         tweets_df = pd.DataFrame(tweets_list, columns=[
             'UserID', 'Name', 'TweetID', 'User Location', 'Date and Time', 'Text'])
-        print(tweets_df)
+        # print(tweets_df)
         return tweets_df
 
     #  function to perform Sentiment Analysis
@@ -97,15 +97,19 @@ def plotting(request):
         access_token_secret = "LNZWMyDykX0x2oHe5i8z3dLF1g4lMWQsSszaZDNNJsECE"
 
         # To take name of the brand and max number of tweets from the user
-        keyword = input("Enter the keyword :")
-        max_r = input("Enter the max number of tweets required :")
+        if 'kw' in request.GET and request.GET['kw']:
+            keyword = request.GET['kw']
+        else:
+            keyword = "cardiff"
+        # print(keyword)
+        max_r = 80
 
         api = authenticate(api_key, api_secret,
                            access_token, access_token_secret)
         tweets = tweet_data(api, keyword, int(max_r))
         # print(tweets['User Location'])
-        analysed_tweets = sentiments(tweets)
-        print(analysed_tweets)
+        # analysed_tweets = sentiments(tweets)
+        # print(analysed_tweets)
         return tweets
         # 'analysed_tweets' is the final data yet
 
@@ -263,7 +267,7 @@ def customer(request):
         auth = tweepy.OAuthHandler(api_key, api_secret)
         auth.set_access_token(access_token, access_token_secret)
         api = tweepy.API(auth)
-        print(api.verify_credentials().screen_name)
+        # print(api.verify_credentials().screen_name)
         return api
 
         # function to recieve data
@@ -302,8 +306,11 @@ def customer(request):
         access_token_secret = "LNZWMyDykX0x2oHe5i8z3dLF1g4lMWQsSszaZDNNJsECE"
 
         # To take name of the brand and max number of tweets from the user
-        keyword = input("Enter the keyword :")
-        max_r = input("Enter the max number of tweets required :")
+        if 'kw' in request.GET and request.GET['kw']:
+            keyword = request.GET['kw']
+        else:
+            keyword = "cardiff"
+        max_r = 40
 
         api = authenticate(api_key, api_secret,
                            access_token, access_token_secret)
@@ -315,8 +322,10 @@ def customer(request):
         # 'analysed_tweets' is the final data yet
     analysed_result = m1()
     p_customer = []
-    for i in analysed_result:
-        if(i['comp_score'] == "positive"):
+    for i in analysed_result.index:
+        # print(analysed_result['comp_score'][i])
+        if(analysed_result['comp_score'][i] == "positive"):
             p_customer.append(
-                {"UserID": i['UserID'], "loc": i['User Location']})
+                {"Name": analysed_result['Name'][i], "loc": analysed_result['User Location'][i]})
+    print(p_customer)
     return render(request, 'customer.html', {'customerList': json.dumps(p_customer)})

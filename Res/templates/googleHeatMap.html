@@ -22,36 +22,73 @@
         left: 25%;
         z-index: 5;
         background-color: #fff;
-        padding: 5px;
+        padding: 0px;
         border: 1px solid #999;
         text-align: center;
         font-family: "Roboto", "sans-serif";
         line-height: 30px;
-        padding-left: 10px;
+        padding-left: 0px;
       }
       #floating-panel {
         background-color: #fff;
         border: 1px solid #999;
         left: 25%;
-        padding: 5px;
+        padding: 0px;
         position: absolute;
         top: 10px;
         z-index: 5;
+      }
+      #searchText {
+        position: absolute;
+        top: 10px;
+        left: 65%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 0px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: "Roboto", "sans-serif";
+        line-height: 30px;
+        padding-left: 0px;
+      }
+      #searchText1 {
+        position: absolute;
+        top: 10px;
+        left: 47%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 0px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: "Roboto", "sans-serif";
+        line-height: 30px;
+        padding-left: 0px;
       }
     </style>
   </head>
 
   <body>
-    <div id="floating-panel">
+    <span id="floating-panel">
       <button onclick="toggleHeatmap()">Toggle Heatmap</button>
-      <button onclick="changeGradient()">Change gradient</button>
+      <button
+        onclick="javascript:window.location.href='http://127.0.0.1:8000/display/customer/'"
+      >
+        Potential Customer
+      </button>
       <button onclick="changeRadius()">Change radius</button>
       <button onclick="changeOpacity()">Change opacity</button>
-      <form action="">
-        <input type="text" value="Enter the key word here" id="keyWord" />
-        <input type="button" value="search" id="submit" />
-      </form>
-    </div>
+    </span>
+    <form action="/display/md/" method="get">
+      <span id="searchText">
+        <input
+          type="text"
+          value="Enter the key word here"
+          id="keyWord"
+          name="kw"
+        />
+        <input type="submit" value="search" id="submit" />
+      </span>
+    </form>
     <div id="map"></div>
     <script type="text/javascript">
       window.onload = function () {
@@ -133,6 +170,7 @@
           */
           }
     </script>
+
     <script
       async
       defer

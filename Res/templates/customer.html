@@ -7,9 +7,30 @@
   <body>
     <script type="text/javascript">
       var customer = {{customerList|safe}}
-      window.onload = function(){
-          alert(customer.UserID)
-      }
+      function loadData(){
+        var html="";
+           for (i in customer){
+             var n = customer[i].Name;
+             if(customer[i].loc!="")
+             var l = customer[i].loc;
+            html += "<tr>";
+            html+="<td>"+n+"</td>";
+            html+="<td>"+l+"</td>";
+            html+="</tr>";
+           }
+           document.getElementById("t1").innerHTML=html;
+        }
+        window.onload = loadData;
     </script>
+    <button onclick="javascript:window.history.back()">back</button>
+    <h2>Potential Customer List</h2>
+    <hr />
+    <table border="1px" width="50%">
+      <tr>
+        <th>Customer Name</th>
+        <th>Customer Location</th>
+      </tr>
+      <tbody id="t1"></tbody>
+    </table>
   </body>
 </html>
