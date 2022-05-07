@@ -9,6 +9,7 @@ from ipywidgets.embed import embed_minimal_html
 import gmaps
 from geopy.geocoders import Nominatim
 import Tweets
+from googletrans import Translator
 
 
 gmaps.configure('AIzaSyDYXPLgcTlgMqebFc_da8nO72--5XS5CZ8')
@@ -25,15 +26,20 @@ def calculate_color(sentiment):
 
 
 def scatter_plot(map_fig, tweets):
+    translator = Translator()
     info_box_template = """
             <d1>
             <dt>{Country}</dt>
+            <dt>-----------------------</dt>
+            <dt>{Tweet}</dt>
+            <dt>-----------------------</dt>
             <dt>Sentiment</dt><dd>{Sentiment}</dd>
             </d1>
 
             """
 
     cluster_info_text = [info_box_template.format(Sentiment=str(tweets['compound'][i]),
+                                                  Tweet=translator.translate((tweets['Text'][i])).text,
                                                   Country=str(tweets['Country'][i])) for i in range(len(tweets['compound']))]
     colors = []
     for i in range(len(tweets['User Location'])):
@@ -45,9 +51,41 @@ def scatter_plot(map_fig, tweets):
     map_fig.add_layer(scatter_layer)
 
 
+def geojson_layer(map_figure, tweets, countries_geojson):
+    #with open('world-administrative-boundaries.geojson') as f:
+     #   geometry = json.load(f)
+
+    countries = {}
+    countries_count = {}
+    for i in range(len(tweets['Country'])):
+        if tweets['Country'][i] in countries:
+            countries[tweets['Country'][i]] += tweets['compound'][i]
+            countries_count[tweets['Country'][i]] += 1
+        else:
+            countries[tweets['Country'][i]] = tweets['compound'][i]
+            countries_count[tweets['Country'][i]] = 1
+    for x in countries_count:
+        countries[x] = countries[x]/countries_count[x]
+
+    countries['United States of America'] = countries.pop('United States')
+
+    colors = []
+    for feature in countries_geojson['features']:
+        country_name = feature['properties']['name']
+        try:
+            color = calculate_color(countries[country_name])
+        except KeyError:
+            color = '#e0e0e0'
+        colors.append(color)
+
+    gini_layer = gmaps.geojson_layer(countries_geojson, fill_color=colors, stroke_color='#000000',
+                                     fill_opacity=0.8, stroke_weight=0.2)
+    map_figure.add_layer(gini_layer)
+
+
 def geocode_locations(tweet_data):
     geolocator = Nominatim(user_agent="plotting_points", timeout=300)
-
+    translator = Translator()
     lat, long, country = [], [], []
     for i in tweet_data['User Location']:
         if i == '':
@@ -59,7 +97,9 @@ def geocode_locations(tweet_data):
             if location:
                 lat.append(location.latitude)
                 long.append(location.longitude)
-                country.append(location.address.split(",")[-1])
+                location_country = location.address.split(", ")[-1]
+                location_country_translated = translator.translate(location_country)
+                country.append(location_country_translated.text)
             else:
                 lat.append(None)
                 long.append(None)
@@ -135,12 +175,15 @@ def cluster_map(map_fig, tweets):
 
 figure_layout = {
     'width': '100%',
-    'height': '75vh',
+    'height': '750px',
     'border': '2px solid white',
     'padding': '2px'
 }
 
 m = gmaps.figure(zoom_level=1, layout=figure_layout, center=[0, 0])
+countries_geojson = gmaps.geojson_geometries.load_geometry('countries-high-resolution')
+
+#tweet_data = pd.read_csv('tweet_data.csv')
 tweet_data = Tweets.main()
 lat_long = geocode_locations(tweet_data)
 tweet_data['Latitude'] = lat_long[0]
@@ -150,5 +193,7 @@ tweet_data.dropna(axis=0, inplace=True)
 tweet_data = tweet_data.reset_index()
 tweet_data.to_csv('tweet_data.csv')
 scatter_plot(m, tweet_data)
+#cluster_map(m, tweet_data)
+#geojson_layer(m, tweet_data, countries_geojson)
 
 embed_minimal_html('export.html', views=[m])
