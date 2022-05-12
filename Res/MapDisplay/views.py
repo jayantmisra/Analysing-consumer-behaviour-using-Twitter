@@ -280,7 +280,7 @@ def customer(request):
         # Converting the data to Pandas DataFrame
         tweets_df = pd.DataFrame(tweets_list, columns=[
             'UserID', 'Name', 'TweetID', 'User Location', 'Date and Time', 'Text'])
-        print(tweets_df)
+        # print(tweets_df)
         return tweets_df
 
     #  function to perform Sentiment Analysis
@@ -317,7 +317,7 @@ def customer(request):
         tweets = tweet_data(api, keyword, int(max_r))
         # print(tweets['User Location'])
         analysed_tweets = sentiments(tweets)
-        print(analysed_tweets)
+        # print(analysed_tweets)
         return analysed_tweets
         # 'analysed_tweets' is the final data yet
     analysed_result = m1()
@@ -327,5 +327,5 @@ def customer(request):
         if(analysed_result['comp_score'][i] == "positive"):
             p_customer.append(
                 {"Name": analysed_result['Name'][i], "loc": analysed_result['User Location'][i]})
-    print(p_customer)
+    # print(p_customer)
     return render(request, 'customer.html', {'customerList': json.dumps(p_customer)})

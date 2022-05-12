@@ -14,6 +14,95 @@
     </style>
   </head>
   <body>
+    <script type="text/javascript">
+      window.onload = function () {
+        var userRegexp = /^[A-Za-z0-9]{3,15}$/;
+        var emailregexp = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+        var userj = document.getElementById("span1");
+        var pwds = document.getElementById("span2");
+        var pwdsc = document.getElementById("span3");
+        var emailspan = document.getElementById("span4");
+        var namespan = document.getElementById("span5");
+        var username = document.getElementById("un");
+        var pwd = document.getElementById("pwd");
+        var pwd2 = document.getElementById("pwdc");
+        var email = document.getElementById("email1");
+        var name = document.getElementById("name1");
+        name.onblur = function () {
+          var u4 = name.value;
+          u4 = u4.trim();
+          if (u4 == "") {
+            namespan.style.color = "red";
+            namespan.innerText = "Name can not be empty";
+            name.onfocus = function () {
+              name.value = "";
+            };
+          } else {
+            namespan.innerText = "";
+          }
+        };
+        email.onblur = function () {
+          var u3 = email.value;
+          u3 = u3.trim();
+          if (u3 == "") {
+            emailspan.style.color = "red";
+            emailspan.innerText = "Email can not be empty";
+            email.onfocus = function () {
+              email.value = "";
+            };
+          } else if (!emailregexp.test(u3)) {
+            emailspan.style.color = "red";
+            emailspan.innerText = "Invalid Email";
+          } else {
+            emailspan.innerText = "";
+          }
+        };
+        pwd.onblur = function () {
+          var u1 = pwd.value;
+          u1 = u1.trim();
+          var confirm = false;
+          if (u1 == "") {
+            pwds.style.color = "red";
+            pwds.innerText = "Password can not be empty";
+            pwd.onfocus = function () {
+              pwd.value = "";
+            };
+          } else {
+            pwds.innerText = "";
+          }
+        };
+        pwd2.onblur = function () {
+          var u1 = pwd.value;
+          var u2 = pwd2.value;
+          u2 = u2.trim();
+          if (u2 != u1) {
+            pwdsc.style.color = "red";
+            pwdsc.innerText = "Password mismatch";
+            pwd2.onfocus = function () {
+              pwd2.value = "";
+            };
+          } else {
+            pwdsc.innerText = "";
+          }
+        };
+        username.onblur = function () {
+          var u = username.value;
+          u = u.trim();
+          if (u == "") {
+            userj.style.color = "red";
+            userj.innerText = "Username can not be empty";
+            username.onfocus = function () {
+              username.value = "";
+            };
+          } else if (!userRegexp.test(u)) {
+            userj.style.color = "red";
+            userj.innerText = "Username must consists of letters and numbers";
+          } else {
+            userj.innerText = "";
+          }
+        };
+      };
+    </script>
     <form method="POST" action="/register/">
       {% csrf_token %}
       <div class="loginbox">
@@ -25,40 +114,54 @@
         <h1 id="q">Sign up</h1>
         {%if msg%} <span id="errormsg">{{msg}}</span> {%endif%}
         <p>Username</p>
+        <span id="span1"></span><br />
         <input
           type="text"
           name="account"
           placeholder="Enter Username"
           required="required"
+          id="un"
         />
         <p>Password</p>
+        <span id="span2"></span><br />
         <input
           type="password"
           name="pwd1"
           placeholder="Enter Password"
           required="required"
+          id="pwd"
         />
+
         <p>Confirm Password</p>
+        <span id="span3"></span><br />
         <input
           type="password"
           name="pwd2"
           placeholder="Enter Password"
           required="required"
+          id="pwdc"
         />
+
         <p>Email</p>
+        <span id="span4"></span><br />
         <input
           type="email"
           name="email"
           placeholder="Enter Email"
           required="required"
+          id="email1"
         />
+
         <p>Name</p>
+        <span id="span5"></span><br />
         <input
           type="text"
           name="name"
           placeholder="Enter Name"
           required="required"
+          id="name1"
         />
+
         <input type="submit" name="" value="Signup" />
       </div>
     </form>

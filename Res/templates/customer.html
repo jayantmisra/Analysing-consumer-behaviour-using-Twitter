@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <title></title>
+
+    <body style="background-color: #eaeaea"></body>
   </head>
   <body>
     <script type="text/javascript">
@@ -22,15 +24,29 @@
         }
         window.onload = loadData;
     </script>
-    <button onclick="javascript:window.history.back()">back</button>
-    <h2>Potential Customer List</h2>
-    <hr />
-    <table border="1px" width="50%">
-      <tr>
-        <th>Customer Name</th>
-        <th>Customer Location</th>
-      </tr>
-      <tbody id="t1"></tbody>
-    </table>
+
+    <nav class="navbar" style="background-color: #231f20">
+      <button
+        style="margin-top: 20px; margin-left: 20px; background-color: #ad974f"
+        onclick="javascript:window.history.back()"
+      >
+        back
+      </button>
+      <center>
+        <h2 style="font-family: serif; color: #ad974f">
+          Potential Customer List
+        </h2>
+      </center>
+      <hr />
+    </nav>
+    <center>
+      <table border="px" width="50%">
+        <tr>
+          <th style="color: #231f20">Customer Name</th>
+          <th style="color: #231f20">Customer Location</th>
+        </tr>
+        <tbody id="t1"></tbody>
+      </table>
+    </center>
   </body>
 </html>
