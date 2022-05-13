@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="no-referrer" />
+    <title>Welcome to Group30</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <style>
+      #errormsg {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <form method="POST" action="/reset/">
+      {% csrf_token %}
+      <div class="loginbox">
+        <img
+          src="{% static 'images/user.jpg' %}"
+          alt="load.."
+          class="userpic"
+        />
+        <h1 id="q1">Reset</h1>
+        {%if msg%} <span id="errormsg">{{msg}}</span> {%endif%}
+        <p>Username</p>
+        <input
+          type="text"
+          name="account1"
+          placeholder="Enter Username"
+          required="required"
+        />
+        <p>new Password</p>
+        <input
+          type="password"
+          name="npwd"
+          placeholder="Enter Password"
+          required="required"
+        />
+        <p>Email</p>
+        <input
+          type="email"
+          name="email1"
+          placeholder="Enter Email"
+          required="required"
+        />
+        <input type="submit" name="" value="Reset" />
+      </div>
+    </form>
+  </body>
+</html>

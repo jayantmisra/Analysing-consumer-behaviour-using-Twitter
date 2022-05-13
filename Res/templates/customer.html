@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <body style="background-color: #eaeaea"></body>
+  </head>
+  <body>
+    <script type="text/javascript">
+      var customer = {{customerList|safe}}
+      function loadData(){
+        var html="";
+           for (i in customer){
+             var n = customer[i].Name;
+             if(customer[i].loc!="")
+             var l = customer[i].loc;
+            html += "<tr>";
+            html+="<td>"+n+"</td>";
+            html+="<td>"+l+"</td>";
+            html+="</tr>";
+           }
+           document.getElementById("t1").innerHTML=html;
+        }
+        window.onload = loadData;
+    </script>
+
+    <nav class="navbar" style="background-color: #231f20">
+      <button
+        style="margin-top: 20px; margin-left: 20px; background-color: #ad974f"
+        onclick="javascript:window.history.back()"
+      >
+        back
+      </button>
+      <center>
+        <h2 style="font-family: serif; color: #ad974f">
+          Potential Customer List
+        </h2>
+      </center>
+      <hr />
+    </nav>
+    <center>
+      <table border="px" width="50%">
+        <tr>
+          <th style="color: #231f20">Customer Name</th>
+          <th style="color: #231f20">Customer Location</th>
+        </tr>
+        <tbody id="t1"></tbody>
+      </table>
+    </center>
+  </body>
+</html>
