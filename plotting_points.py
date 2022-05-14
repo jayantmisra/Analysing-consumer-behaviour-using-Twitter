@@ -211,6 +211,7 @@ countries_geojson = gmaps.geojson_geometries.load_geometry('countries-high-resol
 
 #tweet_data = pd.read_csv('tweet_data.csv')
 tweet_data = Tweets.main()
+#tweet_data = db.query("SELECT * FROM Tweets WHERE rowid >= 10110 AND rowid <= 10460")
 tweet_data = tweet_prep(tweet_data)
 tweet_data.to_csv('tweet_data.csv')
 
