@@ -2,7 +2,7 @@
 
 import tweepy
 import pandas as pd
-
+from googletrans import Translator
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 # function for authentication
@@ -32,7 +32,13 @@ def tweet_data(api, keyword, max_r):
 
 
 def sentiments(tweets):
-    analyzer = SentimentIntensityAnalyzer()
+    
+    #Translates all of the tweets into english for the sentiment analysis
+    translator = Translator()
+    for column in range(0,tweets['Text'].size):
+        tweets.loc[column,'Text'] = translator.translate(tweets['Text'].iloc[column]).text
+    
+    analyzer = SentimentIntensityAnalyzer()    
     tweets['scores'] = tweets['Text'].apply(
         lambda Text: analyzer.polarity_scores(Text))
     tweets['compound'] = tweets['scores'].apply(
