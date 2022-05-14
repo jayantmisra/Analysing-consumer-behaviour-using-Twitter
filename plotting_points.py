@@ -10,6 +10,7 @@ import gmaps
 from geopy.geocoders import Nominatim
 import Tweets
 from googletrans import Translator
+import math
 
 
 gmaps.configure('AIzaSyDYXPLgcTlgMqebFc_da8nO72--5XS5CZ8')
@@ -65,7 +66,6 @@ def countries_syntax(countries):
 
 
 def country_sentiment(tweets):
-
     countries = {}
     countries_count = {}
     for i in range(len(tweets['Country'])):
@@ -134,7 +134,7 @@ def create_clusters(locations, number_clusters):
     kmeans = KMeans(n_clusters=number_clusters, init='k-means++', random_state=10, max_iter=200)
     y_kmeans = kmeans.fit_predict(locations[['Longitude', 'Latitude']])
     locations['cluster'] = y_kmeans
-    avg_sentiment, Lat, Long, cluster_sizes = [], [], [], []
+    avg_sentiment, Lat, Long, cluster_sizes= [], [], [], []
 
     for i in range(kmeans.n_clusters):
         cluster_indicies = np.where(kmeans.labels_ == i)[0]
@@ -211,14 +211,16 @@ countries_geojson = gmaps.geojson_geometries.load_geometry('countries-high-resol
 
 #tweet_data = pd.read_csv('tweet_data.csv')
 tweet_data = Tweets.main()
-#tweet_data = db.query("SELECT * FROM Tweets WHERE rowid >= 10110 AND rowid <= 10460")
 tweet_data = tweet_prep(tweet_data)
-tweet_data.to_csv('tweet_data.csv')
+#tweet_data.to_csv('tweet_data.csv')
 
-
+n = gmaps.figure(zoom_level=1, layout=figure_layout, center=[0, 0])
+o = gmaps.figure(zoom_level=1, layout=figure_layout, center=[0, 0])
 
 geojson_layer(m, countries_geojson, tweet_data)
-#cluster_map(m, tweet_data, int(math.sqrt(len(tweet_data.index))))
-#scatter_plot(m, tweet_data)
+cluster_map(n, tweet_data, int(math.sqrt(len(tweet_data.index))))
+scatter_plot(o, tweet_data)
 
-embed_minimal_html('export.html', views=[m])
+embed_minimal_html('geojson.html', views=[m])
+embed_minimal_html('cluster_map.html', views=[n])
+embed_minimal_html('scatter_plot.html', views=[o])
