@@ -4,7 +4,7 @@ import tweepy
 import pandas as pd
 from googletrans import Translator
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-
+import config
 # function for authentication
 
 
@@ -52,17 +52,12 @@ def sentiments(tweets):
 
 
 def main():
-    # Credentials can be changed here depending on the user
-    api_key = "YJKQrvmFj4IOSv27nonp8aBGx"
-    api_secret = "3wDOUZcAAeTGvH4cNBjgAGYJ2gqYqOEc80rUI3oanGl9igjqbG"
-    access_token = "1364148883329220609-WEj8Ijit8g79xor6qCRqJ7pMHAqdIe"
-    access_token_secret = "LNZWMyDykX0x2oHe5i8z3dLF1g4lMWQsSszaZDNNJsECE"
-
+    
     # To take name of the brand and max number of tweets from the user
     keyword = input("Enter the keyword :")
     max_r = input("Enter the max number of tweets required :")
 
-    api = authenticate(api_key, api_secret, access_token, access_token_secret)
+    api = authenticate(config.api_key, config.api_secret, config.access_token, config.access_token_secret)
     tweets = tweet_data(api, keyword, int(max_r))
     # print(tweets['User Location'])
     analysed_tweets = sentiments(tweets)
