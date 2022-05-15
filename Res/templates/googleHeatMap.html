@@ -78,9 +78,17 @@
       >
         Potential Customer
       </button>
-      <button style="background-color: #ad974f" onclick=window.open("http://127.0.0.1:8000/plotting/map/",'_blank')>
+      <select style="background-color: #ad974f" id="menu">
+        <option value="1">
         Polotting Map
-      </button>
+        </option>
+        <option value="2">
+          Cluster Map
+          </option>
+          <option value="3">
+            GeoJson Map
+            </option>
+      </select>
       <button style="background-color: #ad974f" onclick=window.open("http://127.0.0.1:8000/plotting/sentiment/","_self");>
         Sentiment
       </button>
@@ -102,7 +110,6 @@
       </span>
     </form>
     <div id="map"></div>
-    <script type="text/javascript"></script>
     <script type="text/javascript">
       window.onload = function () {
         var key = document.getElementById("keyWord");
@@ -114,6 +121,20 @@
             key.value = "Enter the key word here";
           }
         };
+        var obj_select = document.getElementById("menu")
+        
+          obj_select.onchange =  function(){
+            var index = obj_select.selectedIndex
+            if(obj_select.options[index].value==1){
+              window.open("http://127.0.0.1:8000/plotting/map/","_blank")
+            }
+            if(obj_select.options[index].value==2){
+              window.open("http://127.0.0.1:8000/plotting/cluster/","_blank")
+            }
+            if(obj_select.options[index].value==3){
+              window.open("http://127.0.0.1:8000/plotting/geojson/","_blank")
+            }
+          }
       };
     </script>
     <script type="text/javascript">

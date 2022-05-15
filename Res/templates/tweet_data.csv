@@ -1,38 +1,43 @@
 ,index,UserID,Name,TweetID,User Location,Date and Time,Text,scores,compound,comp_score,Latitude,Longitude,Country
-0,1,1432551872959684613,🚲うばこ@バイク変更！🛵,1525870113626689536,東京 豊島区,2022-05-15 16:05:59+00:00,"@ kicks812y Thank you 😊 I'm not satisfied with this and will continue to do my best!
+0,0,139221152,José A. Guzmán J.,1525892950357643264,Santo Domingo,2022-05-15 17:36:43+00:00,"@remolachanews Well, at the time I had about 10 of those cars in Uber and thank God none of them gave me that kind of problem.","{'neg': 0.093, 'neu': 0.682, 'pos': 0.225, 'compound': 0.5022}",0.5022,positive,18.4801972,-69.942111,Dominican Republic
+1,2,88218944,debi_cnda/team_Leni,1525892941381869568,"Montréal, Québec",2022-05-15 17:36:41+00:00,RT @dontagala: VP Leni Robredo spent some time with Filipino New Yorkers while waiting for her Uber ride to her destination. She is attendi…,"{'neg': 0.0, 'neu': 1.0, 'pos': 0.0, 'compound': 0.0}",0.0,positive,45.5031824,-73.5698065,Canada
+2,3,404928719,Michael Lloyd-Jones (he/him),1525892934645710848,Bristol,2022-05-15 17:36:39+00:00,RT @Sistah_Space: I confirm that it was an @Uber driver that ruined our once in a lifetime visit to  @ClarenceHouse Buckingham Palace when…,"{'neg': 0.133, 'neu': 0.867, 'pos': 0.0, 'compound': -0.5209}",-0.5209,negative,51.47091115,-2.5790334025708415,United Kingdom
+3,6,1269992922381942785,eric,1525892911090479105,cuiaba,2022-05-15 17:36:34+00:00,@mundobita123 pay my uber at night and I'll send you my pirce in utero,"{'neg': 0.097, 'neu': 0.903, 'pos': 0.0, 'compound': -0.1027}",-0.1027,negative,-15.5986686,-56.0991301,Brazil
+4,7,1086234438474838017,João,1525892902324523012,"Alagoas, Brasil",2022-05-15 17:36:32+00:00,"RT @vittorfernando: “friends I'll be back”
+going to take my uber to go https://t.co/hulQBOp9Ko","{'neg': 0.0, 'neu': 1.0, 'pos': 0.0, 'compound': 0.0}",0.0,positive,-9.6611661,-36.6502426,Brazil
+5,8,3029603182,jehmorango,1525892900449656832,"Maringá, Paraná",2022-05-15 17:36:31+00:00,@godinho_br if it wasn't for the driver we would be waiting for uber there,"{'neg': 0.0, 'neu': 1.0, 'pos': 0.0, 'compound': 0.0}",0.0,positive,-23.425269,-51.9382078,Brazil
+6,11,3300782501,ERIK LOHAN,1525892893260529665,"Guarulhos, Brasil",2022-05-15 17:36:30+00:00,@Samnvs_ @TestaRihanna I think we know this uber,"{'neg': 0.0, 'neu': 1.0, 'pos': 0.0, 'compound': 0.0}",0.0,positive,-23.4430602,-46.524459,Brazil
+7,12,1052782669128437761,Mia Esmile,1525892888453779456,Jannat,2022-05-15 17:36:28+00:00,@Mominnaqli1 @Tube_wale islam buland ho jinaab,"{'neg': 0.0, 'neu': 1.0, 'pos': 0.0, 'compound': 0.0}",0.0,positive,36.2909241,59.5964205,Iran
+8,15,340466321,🫧✨Boops✨🫧,1525892857747447810,she/they 👱🏻,2022-05-15 17:36:21+00:00,@mirandaiiisms I live directly behind a Cracker Barrel. I’ve Uber eats that shit before.,"{'neg': 0.229, 'neu': 0.771, 'pos': 0.0, 'compound': -0.5945}",-0.5945,negative,47.1910727,-122.2951779,United States
+9,19,160031701,jablapavada,1525892831641862144,"Buenos Aires, Argentina",2022-05-15 17:36:15+00:00,"the uber is listening to a song by joaquín sabina that says ""boulevard of broken dreams"" that is green day p… https://t.co/ft2SAjEOGP","{'neg': 0.12, 'neu': 0.775, 'pos': 0.105, 'compound': -0.1027}",-0.1027,negative,-34.6075682,-58.4370894,Argentina
+10,21,1361530479678287874,J. Esmeralda Pineda,1525892819675713537,El Salvador,2022-05-15 17:36:12+00:00,"Can you imagine an emergency being able to ask for an Uber or call a relative, friend or friend who I know would pick me up or in… https://t.co/CAPuaV6D3d","{'neg': 0.074, 'neu': 0.743, 'pos': 0.183, 'compound': 0.5859}",0.5859,positive,13.8000382,-88.9140683,El Salvador
+11,22,1212611549954637824,Reese,1525892819503783939,"Austin, TX",2022-05-15 17:36:12+00:00,@gottmik but serious call someone and tell them where you are and send them the uber info with car licsence and pic,"{'neg': 0.065, 'neu': 0.935, 'pos': 0.0, 'compound': -0.1154}",-0.1154,negative,30.2711286,-97.7436995,United States
+12,23,1682555468,Lai ☽,1525892819088449537,Rio de Janeiro,2022-05-15 17:36:12+00:00,RT @GuigaMunhoz: I still can't believe that Keyla made me pay 150 for the taxi from the center to the parish… the uber was giving 80 reais…,"{'neg': 0.048, 'neu': 0.86, 'pos': 0.092, 'compound': 0.3134}",0.3134,positive,-22.9110137,-43.2093727,Brazil
+13,25,2271000926,soncerrie star,1525892807067435008,"Los Angeles, CA, United States",2022-05-15 17:36:09+00:00,my uber eats order history is embarrassing,"{'neg': 0.302, 'neu': 0.698, 'pos': 0.0, 'compound': -0.3818}",-0.3818,negative,34.0536909,-118.242766,United States
+14,27,502188096,Leo creque,1525892775694180354,Rio Grande - RS,2022-05-15 17:36:02+00:00,RT @KriskaCarvalho: Uber drivers are giving up on the app due to high fuel prices. Bolsonaro managed to…,"{'neg': 0.0, 'neu': 0.865, 'pos': 0.135, 'compound': 0.3947}",0.3947,positive,-32.0334252,-52.0991297,Brazil
+15,29,1151890642517319685,🥀𝔙𝔢𝔫𝔲𝔰𝔦𝔞𝔫🥀,1525892768454819840,𝑂𝑢𝑡 𝑜𝑓 𝑠𝑖𝑔ℎ𝑡 ,2022-05-15 17:36:00+00:00,"Did I order from Uber eats … yes 
+Was this whole meal almost $30… yes
+Could I have driven to get it… yes 
+Treat yo self bitch","{'neg': 0.104, 'neu': 0.601, 'pos': 0.295, 'compound': 0.7171}",0.7171,positive,50.6080651,9.0284647,Germany
+16,30,1065990770908254208,tako,1525892755217862656,日本,2022-05-15 17:35:57+00:00,"Uber eats will start in Kanazawa City, Ishikawa Prefecture and Toyama City, Toyama Prefecture!
+Please use the coupon code if you like!
+Uber Eats will be discounted!
+Referral code [eats-0d6fk4]","{'neg': 0.0, 'neu': 0.797, 'pos': 0.203, 'compound': 0.7074}",0.7074,positive,36.5748441,139.2394179,Japan
+17,32,2799414276,chourreau,1525892741414195207,"Toulouse, France",2022-05-15 17:35:53+00:00,"@OvaleMasque yes, predictable, but if you do it properly you'll always be 5m ahead and statistically it's great… https://t.co/vct7znmIYx","{'neg': 0.0, 'neu': 0.907, 'pos': 0.093, 'compound': 0.2144}",0.2144,positive,43.6044622,1.4442469,France
+18,35,2272942349,иıα,1525892711483682816,"Strasbourg, France",2022-05-15 17:35:46+00:00,"uber eats: 18€
+sum: 25€
+still happy that we canceled the order","{'neg': 0.0, 'neu': 0.748, 'pos': 0.252, 'compound': 0.5719}",0.5719,positive,48.584614,7.7507127,France
+19,39,3305896085,luanny,1525892696883306497,"Seropédica, Brasil",2022-05-15 17:35:43+00:00,I just had a problem with @Uber_Brasil where the driver just stole my cake 🤌🏻🤌🏻🤌🏻🤌🏻 and I can't get in touch,"{'neg': 0.078, 'neu': 0.922, 'pos': 0.0, 'compound': -0.4019}",-0.4019,negative,-22.75208405,-43.70792264991198,Brazil
+20,40,1052782669128437761,Mia Esmile,1525892696849625088,Jannat,2022-05-15 17:35:43+00:00,"@Ravneet31400520 maybe
+my second wife is also from pet","{'neg': 0.0, 'neu': 1.0, 'pos': 0.0, 'compound': 0.0}",0.0,positive,36.2909241,59.5964205,Iran
+21,41,432666775,🎃OMLT🎃,1525892693657849858,Paris / Dublin 🍀,2022-05-15 17:35:42+00:00,"Sah quel plaisir 😌
 
-I'm having an evening drink w","{'neg': 0.062, 'neu': 0.589, 'pos': 0.348, 'compound': 0.8924}",0.8924,positive,35.70644145,139.76634992383208,Japan
-1,3,1370830115345678345,Matthew Wollenweber,1525870094227750913,"New Orleans, LA",2022-05-15 16:05:54+00:00,@sherrod_im @Uber the company is terrible. I only recently restored the apps after moving. The quality of service i… https://t.co/ADN6NQYaO8,"{'neg': 0.132, 'neu': 0.766, 'pos': 0.102, 'compound': -0.1779}",-0.1779,negative,29.9759983,-90.0782127,United States
-2,4,952603944748048385,Uber Sheep 🐏,1525870091514318849,Japan,2022-05-15 16:05:53+00:00,"Brooooooooo, I finally went to the bathroom, right, Mr. Ronda guest, there's something like PMeme Balaraja","{'neg': 0.0, 'neu': 0.857, 'pos': 0.143, 'compound': 0.3612}",0.3612,positive,36.5748441,139.2394179,Japan
-3,8,2712740957,Demônio da chapadeira,1525870040020570112,Na merda,2022-05-15 16:05:41+00:00,"RT @viczando_: ""let's go friend uber is here""
-@minhe_ ""tá vamo"" (turns around and walks to the other side, getting lost)","{'neg': 0.094, 'neu': 0.776, 'pos': 0.131, 'compound': 0.2263}",0.2263,positive,42.8999427,-8.5264476,Spain
-4,10,2243325907,toshi@Unityでブロックチェーンゲーム開発,1525870034798751745,Cyprus,2022-05-15 16:05:40+00:00,"RT @takasaki_bc: It's like removing the operating company from Uber Eats, replacing it with code, and going around only with the delivery party.","{'neg': 0.0, 'neu': 0.802, 'pos': 0.198, 'compound': 0.6369}",0.6369,positive,34.9823018,33.1451285,Cyprus
-5,11,2155104256,Hαyα,1525870030499500032,"Recife, Brasil",2022-05-15 16:05:39+00:00,"RT @vnenav: the uber driver: all dressed up like this must be going to meet her boyfriend right?
+""We need to show them the money.""
 
-me in the backseat: https://t.co/zt1c4jr…","{'neg': 0.0, 'neu': 0.898, 'pos': 0.102, 'compound': 0.3612}",0.3612,positive,-8.0584933,-34.8848193,Brazil
-6,12,918033048381386753,UberDriver76,1525870028507193344,"North Carolina, USA",2022-05-15 16:05:38+00:00,@Uber_Support I didn't receive my gas surcharge payment from Friday night deliveries. Any idea when they will be paid out?,"{'neg': 0.0, 'neu': 1.0, 'pos': 0.0, 'compound': 0.0}",0.0,positive,35.6729639,-79.0392919,United States
-7,13,1181602271869591552,髑髏☠️,1525870024577064960,日本,2022-05-15 16:05:37+00:00,"RT @ miguei_777: /
-     Be sure to hit someone every day 🎯
-✨ Selectable 3000 yen
-Gift certificate lottery for 1 person
-Twice
-Present 🎁
-\
+""For the boss of Uber to be trumpeting cash flow and profit… https://t.co/xeo6xyveTi","{'neg': 0.0, 'neu': 0.902, 'pos': 0.098, 'compound': 0.3818}",0.3818,positive,-3.9811161,-79.1943505,Ecuador
+22,43,1248316064775262215,menina veneno,1525892645339406341,ela/ele,2022-05-15 17:35:31+00:00,"RT @elaynebaeta: uber mineiro is explaining to me a taxi driver fight vs. uber with a thousand slang and accents and abbreviated words
 
-🔻 How to apply 🔻
-1️⃣ Follow
-2️⃣ Complete this post with RT ^ _ ^
-Deadline 5/16 23:59
-
-Amazon / iTunes / P…","{'neg': 0.0, 'neu': 0.814, 'pos': 0.186, 'compound': 0.8779}",0.8779,positive,36.5748441,139.2394179,Japan
-8,15,4765359972,ネコラ@猫をこよなく愛する人🐈🐾,1525870012430688256,東京最南,2022-05-15 16:05:34+00:00,"Because it can't be helped
-Priority is given to walking 🐈🐾😭
-#Continued tonight's cat
-#I want to connect with cat lovers https://t.co/hNcBarfMCy","{'neg': 0.097, 'neu': 0.755, 'pos': 0.148, 'compound': 0.1531}",0.1531,positive,35.0108757,135.7551699,Japan
-9,16,1325198368327413761,Parmenion62,1525869989097611264,"Bristol, England",2022-05-15 16:05:29+00:00,"RT @gardening_kate: Daughter awaiting an Uber to go A&E at uni now as still sh!tting mucous, fainting. Having called 111 again they can't s…","{'neg': 0.0, 'neu': 1.0, 'pos': 0.0, 'compound': 0.0}",0.0,positive,51.47091115,-2.5790334025708415,United Kingdom
-10,17,1304622358276141056,走れうしー@uber配達員,1525869962421645312,日本 東京,2022-05-15 16:05:22+00:00,"@Uber_kaze emits light! ??
-It's a delicious name 🐮💖 Pack https://t.co/GSIBkSz4ZC","{'neg': 0.0, 'neu': 0.506, 'pos': 0.494, 'compound': 0.8946}",0.8946,positive,35.6828387,139.7594549,Japan
-11,18,143561607,scouserdownsouth-i❤️JC✋,1525869961381662722,South Wales 🏴󠁧󠁢󠁷󠁬󠁳󠁿,2022-05-15 16:05:22+00:00,"RT @StevenGWalker74: ""Labour heavyweight Wes Streeting"" 😳
-
-No surprise to see uber-Blairite Lord Cashman amongst those ponying up towards W…","{'neg': 0.083, 'neu': 0.917, 'pos': 0.0, 'compound': -0.2057}",-0.2057,negative,42.7089493,-78.5780796,United States
-12,19,50045830,Luiza Sá,1525869960471379968,Rio de Janeiro - Brazil,2022-05-15 16:05:22+00:00,"Leclerc in Monaco can only ride an Uber or ride, po. https://t.co/K8ziOqxo5b","{'neg': 0.0, 'neu': 1.0, 'pos': 0.0, 'compound': 0.0}",0.0,positive,-22.9110137,-43.2093727,Brazil
+honestly 5…","{'neg': 0.091, 'neu': 0.804, 'pos': 0.105, 'compound': 0.1027}",0.1027,positive,13.8000382,-88.9140683,El Salvador
+23,45,94281786,🇮🇳 chhota bhakt (spreading positivity) 🇮🇳,1525892643003170816,Kailasa,2022-05-15 17:35:30+00:00,@Sydusm @Uber_Support Stop trying to go to Pakistan.,"{'neg': 0.239, 'neu': 0.761, 'pos': 0.0, 'compound': -0.296}",-0.296,negative,30.7209533,78.0171024,India
+24,46,1110377830725181440,2021 ✨💉,1525892641430376448,"São Paulo, Brasil",2022-05-15 17:35:30+00:00,"RT @vittorfernando: “friends I'll be back”
+going to take my uber to go https://t.co/hulQBOp9Ko","{'neg': 0.0, 'neu': 1.0, 'pos': 0.0, 'compound': 0.0}",0.0,positive,-23.5506507,-46.6333824,Brazil
