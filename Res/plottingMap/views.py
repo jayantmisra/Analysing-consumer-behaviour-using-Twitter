@@ -1,4 +1,4 @@
-import json
+# import json
 from django.shortcuts import redirect, render
 import tweepy
 import pandas as pd
@@ -13,7 +13,6 @@ from sklearn.preprocessing import minmax_scale
 from ipywidgets.embed import embed_minimal_html
 import gmaps
 from geopy.geocoders import Nominatim
-from googletrans import Translator
 import math
 import matplotlib.pyplot as plt
 # function for authentication
@@ -76,8 +75,8 @@ def plotting_points(request):
     def ma():
 
         # To take name of the brand and max number of tweets from the user
-        keyword = input("Enter the keyword :")
-        max_r = input("Enter the max number of tweets required :")
+        keyword = "uber"
+        max_r = 40
 
         api = authenticate(api_key, api_secret,
                            access_token, access_token_secret)
@@ -369,8 +368,8 @@ def cluster_map(request):
     def ma():
 
         # To take name of the brand and max number of tweets from the user
-        keyword = input("Enter the keyword :")
-        max_r = input("Enter the max number of tweets required :")
+        keyword = "uber"
+        max_r = 50
 
         api = authenticate(api_key, api_secret,
                            access_token, access_token_secret)
@@ -588,7 +587,7 @@ def cluster_map(request):
     # geojson_layer(m, countries_geojson, tweet_data1)
     cluster_info = cluster_map(m, tweet_data1, int(
         math.sqrt(len(tweet_data1.index))))
-    details = []
+    # details = []
 
     # scatter_plot(m, tweet_data1)
 
@@ -652,8 +651,8 @@ def geo_json(request):
     def ma():
 
         # To take name of the brand and max number of tweets from the user
-        keyword = input("Enter the keyword :")
-        max_r = input("Enter the max number of tweets required :")
+        keyword = "uber"
+        max_r = 40
 
         api = authenticate(api_key, api_secret,
                            access_token, access_token_secret)
