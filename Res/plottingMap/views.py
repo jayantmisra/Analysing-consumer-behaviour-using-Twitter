@@ -13,6 +13,7 @@ from ipywidgets.embed import embed_minimal_html
 import gmaps
 from geopy.geocoders import Nominatim
 from googletrans import Translator
+import math
 # function for authentication
 # Create your views here.
 
@@ -81,9 +82,10 @@ def plotting_points(request):
         tweets = tweet_data(api, keyword, int(max_r))
         # print(tweets['User Location'])
         analysed_tweets = sentiments(tweets)
+        return analysed_tweets
         # print(analysed_tweets)
         # 'analysed_tweets' is the final data yet
-    gmaps.configure('AIzaSyDYXPLgcTlgMqebFc_da8nO72--5XS5CZ8')
+    gmaps.configure('AIzaSyAcvMVkUZMQodi6ga8s5yeewBq1VTxfZ_4')
 
     def calculate_color(sentiment):
         norm = Normalize(vmin=-1, vmax=1)
@@ -167,7 +169,7 @@ def plotting_points(request):
                                          fill_opacity=0.8, stroke_weight=0.2)
         map_figure.add_layer(gini_layer)
 
-    def geocode_locations(tweet_data):
+    def geocode_locations(tweet_data1):
         geolocator = Nominatim(user_agent="plotting_points", timeout=300)
         lat, long, country = [], [], []
         for i in tweet_data1['User Location']:
@@ -278,12 +280,12 @@ def plotting_points(request):
     # tweet_data = pd.read_csv('tweet_data.csv')
     tweet_data1 = ma()
     # tweet_data = db.query("SELECT * FROM Tweets WHERE rowid >= 10110 AND rowid <= 10460")
-    tweet_data1 = tweet_prep(tweet_data)
+    tweet_data1 = tweet_prep(tweet_data1)
     tweet_data1.to_csv('tweet_data.csv')
 
-    geojson_layer(m, countries_geojson, tweet_data)
-    # cluster_map(m, tweet_data, int(math.sqrt(len(tweet_data.index))))
-    # scatter_plot(m, tweet_data)
+    # geojson_layer(m, countries_geojson, tweet_data1)
+    cluster_map(m, tweet_data1, int(math.sqrt(len(tweet_data1.index))))
+    scatter_plot(m, tweet_data1)
 
     embed_minimal_html('templates/export.html', views=[m])
     return render(request, 'export.html')

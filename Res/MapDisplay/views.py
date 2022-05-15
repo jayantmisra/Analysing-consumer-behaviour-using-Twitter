@@ -77,7 +77,7 @@ def heat(request):
         if 'kw' in request.GET and request.GET['kw']:
             keyword = request.GET['kw']
         else:
-            keyword = "cardiff"
+            keyword = "uber"
         # print(keyword)
         max_r = 80
         tweets = tweet_data(api, keyword, int(max_r))

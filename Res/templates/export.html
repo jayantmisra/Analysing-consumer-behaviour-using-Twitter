@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IPyWidget export</title>
+</head>
+<body>
+
+
+<!-- Load require.js. Delete this if your page already loads require.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js" crossorigin="anonymous"></script>
+
+<script type="application/vnd.jupyter.widget-state+json">
+{
+  "version_major": 2,
+  "version_minor": 0,
+  "state": {
+    "a16c25b471244deabd050524931803b5": {
+      "model_name": "LayoutModel",
+      "model_module": "@jupyter-widgets/base",
+      "model_module_version": "1.2.0",
+      "state": {
+        "height": "100%",
+        "width": "100%"
+      }
+    },
+    "bc36e65999e1471d881193a04a316d2c": {
+      "model_name": "PlainmapModel",
+      "model_module": "jupyter-gmaps",
+      "model_module_version": "0.9.0",
+      "state": {
+        "_dom_classes": [],
+        "configuration": {
+          "api_key": "AIzaSyAcvMVkUZMQodi6ga8s5yeewBq1VTxfZ_4"
+        },
+        "data_bounds": [
+          [
+            -48.16693410586497,
+            -179.99999
+          ],
+          [
+            78.63937202155086,
+            179.99999
+          ]
+        ],
+        "initial_viewport": {
+          "type": "ZOOM_CENTER",
+          "center": [
+            0,
+            0
+          ],
+          "zoom_level": 1
+        },
+        "layers": [
+          "IPY_MODEL_75af6d4254574db785bcd8ad7374d189",
+          "IPY_MODEL_9173a1318cd14c1cac664b5685e14f37"
+        ],
+        "layout": "IPY_MODEL_a16c25b471244deabd050524931803b5"
+      }
+    },
+    "7dece2dd9f5b4595b25e87b174437cb9": {
+      "model_name": "LayoutModel",
+      "model_module": "@jupyter-widgets/base",
+      "model_module_version": "1.2.0",
+      "state": {}
+    },
+    "2719456b31ad4aea9f8f5a5c8fde45b0": {
+      "model_name": "ToolbarModel",
+      "model_module": "jupyter-gmaps",
+      "model_module_version": "0.9.0",
+      "state": {
+        "_dom_classes": [],
+        "layer_controls": [],
+        "layout": "IPY_MODEL_7dece2dd9f5b4595b25e87b174437cb9"
+      }
+    },
+    "1f1892b7202646b2bb5087568485a4a5": {
+      "model_name": "LayoutModel",
+      "model_module": "@jupyter-widgets/base",
+      "model_module_version": "1.2.0",
+      "state": {}
+    },
+    "28fa14c2e8274e09b150b590863cc793": {
+      "model_name": "ErrorsBoxModel",
+      "model_module": "jupyter-gmaps",
+      "model_module_version": "0.9.0",
+      "state": {
+        "_dom_classes": [],
+        "errors": [],
+        "layout": "IPY_MODEL_1f1892b7202646b2bb5087568485a4a5"
+      }
+    },
+    "2ecd83f4f2df46a2b2790dd5bbd8ba67": {
+      "model_name": "LayoutModel",
+      "model_module": "@jupyter-widgets/base",
+      "model_module_version": "1.2.0",
+      "state": {
+        "border": "2px solid white",
+        "height": "750px",
+        "padding": "2px",
+        "width": "100%"
+      }
+    },
+    "09a90449badf48d8af8d81f3927f17fb": {
+      "model_name": "FigureModel",
+      "model_module": "jupyter-gmaps",
+      "model_module_version": "0.9.0",
+      "state": {
+        "_dom_classes": [],
+        "_errors_box": "IPY_MODEL_28fa14c2e8274e09b150b590863cc793",
+        "_map": "IPY_MODEL_bc36e65999e1471d881193a04a316d2c",
+        "_toolbar": "IPY_MODEL_2719456b31ad4aea9f8f5a5c8fde45b0",
+        "layout": "IPY_MODEL_2ecd83f4f2df46a2b2790dd5bbd8ba67"
+      }
+    },
+    "944f4b9d81ae4f6d9c9c9fd053b34ef2": {
+      "model_name": "SymbolModel",
+      "model_module": "jupyter-gmaps",
+      "model_module_version": "0.9.0",
+      "state": {
+        "display_info_box": true,
+        "fill_color": "#e3f399",
+        "fill_opacity": 0.5,
+        "info_box_content": "\n        <d1>\n        <dt>Sentiment</dt><dd>0.14315</dd>\n        <button type=\"button\">Stats</button>\n        <button type=\"button\">Pie</button>\n        </d1>\n\n        ",
+        "location": [
+          6.254683849999999,
+          -71.82943632500002
+        ],
+        "scale": 6,
+        "stroke_color": "#e3f399",
+        "stroke_opacity": 0.0
+      }
+    },
+    "f54efd35770f4ee596349611f81c50c5": {
+      "model_name": "SymbolModel",
+      "model_module": "jupyter-gmaps",
+      "model_module_version": "0.9.0",
+      "state": {
+        "display_info_box": true,
+        "fill_color": "#78c565",
+        "fill_opacity": 0.5,
+        "info_box_content": "\n        <d1>\n        <dt>Sentiment</dt><dd>0.5452</dd>\n        <button type=\"button\">Stats</button>\n        <button type=\"button\">Pie</button>\n        </d1>\n\n        ",
+        "location": [
+          41.60856488,
+          118.48206376000002
+        ],
+        "scale": 8,
+        "stroke_color": "#78c565",
+        "stroke_opacity": 0.0
+      }
+    },
+    "f230d02b191341728661711ce2206fdf": {
+      "model_name": "SymbolModel",
+      "model_module": "jupyter-gmaps",
+      "model_module_version": "0.9.0",
+      "state": {
+        "display_info_box": true,
+        "fill_color": "#e54e35",
+        "fill_opacity": 0.5,
+        "info_box_content": "\n        <d1>\n        <dt>Sentiment</dt><dd>-0.7003</dd>\n        <button type=\"button\">Stats</button>\n        <button type=\"button\">Pie</button>\n        </d1>\n\n        ",
+        "location": [
+          -26.205,
+          28.049722
+        ],
+        "scale": 1,
+        "stroke_color": "#e54e35",
+        "stroke_opacity": 0.0
+      }
+    },
+    "75af6d4254574db785bcd8ad7374d189": {
+      "model_name": "MarkerLayerModel",
+      "model_module": "jupyter-gmaps",
+      "model_module_version": "0.9.0",
+      "state": {
+        "data_bounds": [
+          [
+            -48.16693410586497,
+            -179.99999
+          ],
+          [
+            62.60576659253164,
+            179.99999
+          ]
+        ],
+        "markers": [
+          "IPY_MODEL_944f4b9d81ae4f6d9c9c9fd053b34ef2",
+          "IPY_MODEL_f54efd35770f4ee596349611f81c50c5",
+          "IPY_MODEL_f230d02b191341728661711ce2206fdf"
+        ]
+      }
+    },
+    "894bd354436240eb83117f4aba34a7eb": {
+      "model_name": "SymbolModel",
+      "model_module": "jupyter-gmaps",
+      "model_module_version": "0.9.0",
+      "state": {
+        "display_info_box": true,
+        "fill_color": "#ddf191",
+        "info_box_content": "\n                <d1>\n                <dt>United States</dt>\n                <dt>-----------------------</dt>\n                <dt>RT @ValaAfshar: U.S. technology companies founded by 1st and 2nd generation immigrants:\n\nApple\nGoogle\nAmazon\nFacebook\nOracle\nIBM\nUber\nAirbn\u2026</dt>\n                <dt>-----------------------</dt>\n                <dt>Sentiment</dt><dd>0.1779</dd>\n                </d1>\n\n                ",
+        "location": [
+          44.9772995,
+          -93.2654692
+        ],
+        "scale": 3,
+        "stroke_color": "#ddf191"
+      }
+    },
+    "04ae18db8e034733afc633ee49a40e93": {
+      "model_name": "SymbolModel",
+      "model_module": "jupyter-gmaps",
+      "model_module_version": "0.9.0",
+      "state": {
+        "display_info_box": true,
+        "fill_color": "#feffbe",
+        "info_box_content": "\n                <d1>\n                <dt>India</dt>\n                <dt>-----------------------</dt>\n                <dt>@AditiChandra15 Hey Aditi, we have addressed your concern and sent a response your way. You should be able to view\u2026 https://t.co/tuNVnnWBIM</dt>\n                <dt>-----------------------</dt>\n                <dt>Sentiment</dt><dd>0.0</dd>\n                </d1>\n\n                ",
+        "location": [
+          22.3511148,
+          78.6677428
+        ],
+        "scale": 3,
+        "stroke_color": "#feffbe"
+      }
+    },
+    "472c40774a0e4d5694c2de2e16140f64": {
+      "model_name": "SymbolModel",
+      "model_module": "jupyter-gmaps",
+      "model_module_version": "0.9.0",
+      "state": {
+        "display_info_box": true,
+        "fill_color": "#ddf191",
+        "info_box_content": "\n                <d1>\n                <dt>China</dt>\n                <dt>-----------------------</dt>\n                <dt>RT @ nogizaka46: \"10th YEAR BIRTHDAY LIVE\" commemoration \ud83c\udf82\n\nCustomers who pre-ordered the \"9th YEAR BIRTHDAY LIVE\" Blu-ray / DVD at the venue will receive a limited B2 clear poster using the \u2193 member group photo taken on stage ...</dt>\n                <dt>-----------------------</dt>\n                <dt>Sentiment</dt><dd>0.1779</dd>\n                </d1>\n\n                ",
+        "location": [
+          46.4229274,
+          128.435644
+        ],
+        "scale": 3,
+        "stroke_color": "#ddf191"
+      }
+    },
+    "fe16dbf7f3f547d386d235378d92f2d0": {
+      "model_name": "SymbolModel",
+      "model_module": "jupyter-gmaps",
+      "model_module_version": "0.9.0",
+      "state": {
+        "display_info_box": true,
+        "fill_color": "#33a456",
+        "info_box_content": "\n                <d1>\n                <dt>China</dt>\n                <dt>-----------------------</dt>\n                <dt>RT @risa_memorial: Risa-san answered various questions # Risa Watanabe's memorial 46 \u2728\nToday about the memorial book!\n\nThe fifth question is\n\"What surprised you most when shooting in Hokkaido?\"\n\n#Risa Memorial [2 days to go on sale! ]\nReservation \u25b6 \ufe0e https://t.co/\u2026</dt>\n                <dt>-----------------------</dt>\n                <dt>Sentiment</dt><dd>0.7339</dd>\n                </d1>\n\n                ",
+        "location": [
+          46.4229274,
+          128.435644
+        ],
+        "scale": 3,
+        "stroke_color": "#33a456"
+      }
+    },
+    "8ad70af6d9af424bb35af32ade9e611c": {
+      "model_name": "SymbolModel",
+      "model_module": "jupyter-gmaps",
+      "model_module_version": "0.9.0",
+      "state": {
+        "display_info_box": true,
+        "fill_color": "#e54e35",
+        "info_box_content": "\n                <d1>\n                <dt>South Africa</dt>\n                <dt>-----------------------</dt>\n                <dt>RT @ zecky2409: My uber driver is a learner \ud83d\ude2d whenever we lose step</dt>\n                <dt>-----------------------</dt>\n                <dt>Sentiment</dt><dd>-0.7003</dd>\n                </d1>\n\n                ",
+        "location": [
+          -26.205,
+          28.049722
+        ],
+        "scale": 3,
+        "stroke_color": "#e54e35"
+      }
+    },
+    "653859ec41d54fa2baa4f5c2bc9daae3": {
+      "model_name": "SymbolModel",
+      "model_module": "jupyter-gmaps",
+      "model_module_version": "0.9.0",
+      "state": {
+        "display_info_box": true,
+        "fill_color": "#026c39",
+        "info_box_content": "\n                <d1>\n                <dt>China</dt>\n                <dt>-----------------------</dt>\n                <dt>RT @ kakiharuka_1st: # Nogizaka46 10th Basra An off-shot is being released to commemorate \ud83e\udd70\n\nIt's cool to enjoy the beautiful sea that was a dream \u2764\ufe0f\ud83e\udd70\n\nAmazon https://t.co/7DRH7pVYxu\nRakuten https://t.co/XauZ3Giax9\nSeven http ...</dt>\n                <dt>-----------------------</dt>\n                <dt>Sentiment</dt><dd>0.9792</dd>\n                </d1>\n\n                ",
+        "location": [
+          46.4229274,
+          128.435644
+        ],
+        "scale": 3,
+        "stroke_color": "#026c39"
+      }
+    },
+    "5c7d5ad4d95e49669f16adf0fc5e35ec": {
+      "model_name": "SymbolModel",
+      "model_module": "jupyter-gmaps",
+      "model_module_version": "0.9.0",
+      "state": {
+        "display_info_box": true,
+        "fill_color": "#a7d96b",
+        "info_box_content": "\n                <d1>\n                <dt>Brazil</dt>\n                <dt>-----------------------</dt>\n                <dt>RT @KriskaCarvalho: Uber drivers are giving up on the app due to high fuel prices. Bolsonaro managed to\u2026</dt>\n                <dt>-----------------------</dt>\n                <dt>Sentiment</dt><dd>0.3947</dd>\n                </d1>\n\n                ",
+        "location": [
+          -10.3333333,
+          -53.2
+        ],
+        "scale": 3,
+        "stroke_color": "#a7d96b"
+      }
+    },
+    "f250de21586c4bd1b0a6b62488167b1a": {
+      "model_name": "SymbolModel",
+      "model_module": "jupyter-gmaps",
+      "model_module_version": "0.9.0",
+      "state": {
+        "display_info_box": true,
+        "fill_color": "#feffbe",
+        "info_box_content": "\n                <d1>\n                <dt>Brazil</dt>\n                <dt>-----------------------</dt>\n                <dt>Maybe someone managed to get an uber to get back out of the mosquitoes yesterday</dt>\n                <dt>-----------------------</dt>\n                <dt>Sentiment</dt><dd>0.0</dd>\n                </d1>\n\n                ",
+        "location": [
+          -23.425269,
+          -51.9382078
+        ],
+        "scale": 3,
+        "stroke_color": "#feffbe"
+      }
+    },
+    "7f744c0202de4c1f92d3a6c876f1e470": {
+      "model_name": "SymbolModel",
+      "model_module": "jupyter-gmaps",
+      "model_module_version": "0.9.0",
+      "state": {
+        "display_info_box": true,
+        "fill_color": "#15904c",
+        "info_box_content": "\n                <d1>\n                <dt>China</dt>\n                <dt>-----------------------</dt>\n                <dt>RT @risa_memorial: Risa-san answered various questions # Risa Watanabe's memorial 46 \u2728\nToday about the memorial book!\n\nThe third question is\n\"What was the most fun part of shooting in Hokkaido?\"\n\n#Risa Memorial [2 days to go on sale! ]\nReservation \u25b6 \ufe0e https://t.c\u2026</dt>\n                <dt>-----------------------</dt>\n                <dt>Sentiment</dt><dd>0.835</dd>\n                </d1>\n\n                ",
+        "location": [
+          46.4229274,
+          128.435644
+        ],
+        "scale": 3,
+        "stroke_color": "#15904c"
+      }
+    },
+    "aff14a26a916469db7da4b958e6893a2": {
+      "model_name": "SymbolModel",
+      "model_module": "jupyter-gmaps",
+      "model_module_version": "0.9.0",
+      "state": {
+        "display_info_box": true,
+        "fill_color": "#feffbe",
+        "info_box_content": "\n                <d1>\n                <dt>El Salvador</dt>\n                <dt>-----------------------</dt>\n                <dt>RT @abezerraigor: uber driver: are you ok?\n\nMe in the back seat:\n\n https://t.co/TTymBNTrUa</dt>\n                <dt>-----------------------</dt>\n                <dt>Sentiment</dt><dd>0.0</dd>\n                </d1>\n\n                ",
+        "location": [
+          13.8000382,
+          -88.9140683
+        ],
+        "scale": 3,
+        "stroke_color": "#feffbe"
+      }
+    },
+    "9173a1318cd14c1cac664b5685e14f37": {
+      "model_name": "MarkerLayerModel",
+      "model_module": "jupyter-gmaps",
+      "model_module_version": "0.9.0",
+      "state": {
+        "data_bounds": [
+          [
+            -37.26806006155086,
+            -179.99999
+          ],
+          [
+            78.63937202155086,
+            179.99999
+          ]
+        ],
+        "markers": [
+          "IPY_MODEL_894bd354436240eb83117f4aba34a7eb",
+          "IPY_MODEL_04ae18db8e034733afc633ee49a40e93",
+          "IPY_MODEL_472c40774a0e4d5694c2de2e16140f64",
+          "IPY_MODEL_fe16dbf7f3f547d386d235378d92f2d0",
+          "IPY_MODEL_8ad70af6d9af424bb35af32ade9e611c",
+          "IPY_MODEL_653859ec41d54fa2baa4f5c2bc9daae3",
+          "IPY_MODEL_5c7d5ad4d95e49669f16adf0fc5e35ec",
+          "IPY_MODEL_f250de21586c4bd1b0a6b62488167b1a",
+          "IPY_MODEL_7f744c0202de4c1f92d3a6c876f1e470",
+          "IPY_MODEL_aff14a26a916469db7da4b958e6893a2"
+        ]
+      }
+    }
+  }
+}
+</script>
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "09a90449badf48d8af8d81f3927f17fb"}
+</script>
+
+</body>
+</html>
