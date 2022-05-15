@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 import tweepy
 import pandas as pd
 from googletrans import Translator
@@ -14,11 +14,13 @@ import gmaps
 from geopy.geocoders import Nominatim
 from googletrans import Translator
 import math
+import matplotlib.pyplot as plt
 # function for authentication
 # Create your views here.
 
 
 def plotting_points(request):
+
     # Credentials can be changed here depending on the user
     api_key = "YJKQrvmFj4IOSv27nonp8aBGx"
     api_secret = "3wDOUZcAAeTGvH4cNBjgAGYJ2gqYqOEc80rUI3oanGl9igjqbG"
@@ -281,7 +283,7 @@ def plotting_points(request):
     tweet_data1 = ma()
     # tweet_data = db.query("SELECT * FROM Tweets WHERE rowid >= 10110 AND rowid <= 10460")
     tweet_data1 = tweet_prep(tweet_data1)
-    tweet_data1.to_csv('tweet_data.csv')
+    tweet_data1.to_csv('templates/tweet_data.csv')
 
     # geojson_layer(m, countries_geojson, tweet_data1)
     cluster_map(m, tweet_data1, int(math.sqrt(len(tweet_data1.index))))
@@ -289,3 +291,23 @@ def plotting_points(request):
 
     embed_minimal_html('templates/export.html', views=[m])
     return render(request, 'export.html')
+
+
+def sentiment_graph(request):
+    df = pd.read_csv(
+        'D:\\python code\\Register\\Res\\templates\\tweet_data.csv')
+
+    pos = df['Date and Time'][df['compound'] > 0.0]
+    nopn = df['Date and Time'][df['compound'] == 0.0]
+    neg = df['Date and Time'][df['compound'] < 0.0]
+    plt.hist([pos, nopn, neg],
+             stacked=False,
+             label=["positive", "no opinion", "negative"])
+
+    plt.legend()
+    plt.title("Sentiment Analysis: Uber")
+    plt.xlabel("Dates")
+    plt.xticks(rotation=45, ha='right')
+    plt.ylabel("No. of tweets")
+    plt.show()
+    return redirect('/display/md')

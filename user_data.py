@@ -5,6 +5,7 @@ import tweepy
 import pandas as pd
 import spacy
 import spacy_ke
+from googletrans import Translator
 from authenticate import auth
 from collections import Counter
 from string import punctuation
@@ -69,8 +70,18 @@ def predict_user_gender(token):
 def user_tweets(user_id):
     response = auth().get_users_tweets(user_id, max_results=100)
     tweets = response.data
+<<<<<<< HEAD
     tweets_list = [[tweet.id, tweet.text] for tweet in tweets]
     tweets_df = pd.DataFrame(tweets_list, columns=['TweetID', 'Text'])
+=======
+    tweets_list = [[tweet.id,tweet.text] for tweet in tweets]
+    tweets_df = pd.DataFrame(tweets_list, columns = ['TweetID','Text'])
+    #Translates tweets into english
+    translator = Translator()
+    for column in range(0,tweets_df['Text'].size):
+        tweets_df.loc[column,'Text'] = translator.translate(tweets_df['Text'].iloc[column]).text
+    
+>>>>>>> 2fd3f3ad99c5306ac8761640633d132b6d28df2b
     return tweets_df
 
 
@@ -95,11 +106,16 @@ def get_keywords(tweets_df):
     return tweets_df
 
 
+<<<<<<< HEAD
 def main():
     user_id = "1364148883329220609"  # male
     user_id = "1040587167230124032"  # female
 
     #user_id = input("Enter the user id:")
+=======
+def main(user_id):
+    
+>>>>>>> 2fd3f3ad99c5306ac8761640633d132b6d28df2b
 
     tweets_df = user_tweets(user_id)
     tweets_k = get_keywords(tweets_df)
@@ -107,8 +123,21 @@ def main():
     token = list(
         set([interest for sublist in interests for interest in sublist]))
     gender = predict_user_gender(token)
+<<<<<<< HEAD
 
 
 # calling the main function
 if __name__ == "__main__":
     main()
+=======
+    gender = gender.to_string().split()
+    return gender[1], interests
+    
+# calling the main function
+if __name__ ==  "__main__":
+    user_id = "1364148883329220609" # male
+    user_id = "1040587167230124032" # female
+    
+    #user_id = input("Enter the user id:")
+    main(user_id)
+>>>>>>> 2fd3f3ad99c5306ac8761640633d132b6d28df2b

@@ -1,0 +1,38 @@
+,index,UserID,Name,TweetID,User Location,Date and Time,Text,scores,compound,comp_score,Latitude,Longitude,Country
+0,1,1432551872959684613,🚲うばこ@バイク変更！🛵,1525870113626689536,東京 豊島区,2022-05-15 16:05:59+00:00,"@ kicks812y Thank you 😊 I'm not satisfied with this and will continue to do my best!
+
+I'm having an evening drink w","{'neg': 0.062, 'neu': 0.589, 'pos': 0.348, 'compound': 0.8924}",0.8924,positive,35.70644145,139.76634992383208,Japan
+1,3,1370830115345678345,Matthew Wollenweber,1525870094227750913,"New Orleans, LA",2022-05-15 16:05:54+00:00,@sherrod_im @Uber the company is terrible. I only recently restored the apps after moving. The quality of service i… https://t.co/ADN6NQYaO8,"{'neg': 0.132, 'neu': 0.766, 'pos': 0.102, 'compound': -0.1779}",-0.1779,negative,29.9759983,-90.0782127,United States
+2,4,952603944748048385,Uber Sheep 🐏,1525870091514318849,Japan,2022-05-15 16:05:53+00:00,"Brooooooooo, I finally went to the bathroom, right, Mr. Ronda guest, there's something like PMeme Balaraja","{'neg': 0.0, 'neu': 0.857, 'pos': 0.143, 'compound': 0.3612}",0.3612,positive,36.5748441,139.2394179,Japan
+3,8,2712740957,Demônio da chapadeira,1525870040020570112,Na merda,2022-05-15 16:05:41+00:00,"RT @viczando_: ""let's go friend uber is here""
+@minhe_ ""tá vamo"" (turns around and walks to the other side, getting lost)","{'neg': 0.094, 'neu': 0.776, 'pos': 0.131, 'compound': 0.2263}",0.2263,positive,42.8999427,-8.5264476,Spain
+4,10,2243325907,toshi@Unityでブロックチェーンゲーム開発,1525870034798751745,Cyprus,2022-05-15 16:05:40+00:00,"RT @takasaki_bc: It's like removing the operating company from Uber Eats, replacing it with code, and going around only with the delivery party.","{'neg': 0.0, 'neu': 0.802, 'pos': 0.198, 'compound': 0.6369}",0.6369,positive,34.9823018,33.1451285,Cyprus
+5,11,2155104256,Hαyα,1525870030499500032,"Recife, Brasil",2022-05-15 16:05:39+00:00,"RT @vnenav: the uber driver: all dressed up like this must be going to meet her boyfriend right?
+
+me in the backseat: https://t.co/zt1c4jr…","{'neg': 0.0, 'neu': 0.898, 'pos': 0.102, 'compound': 0.3612}",0.3612,positive,-8.0584933,-34.8848193,Brazil
+6,12,918033048381386753,UberDriver76,1525870028507193344,"North Carolina, USA",2022-05-15 16:05:38+00:00,@Uber_Support I didn't receive my gas surcharge payment from Friday night deliveries. Any idea when they will be paid out?,"{'neg': 0.0, 'neu': 1.0, 'pos': 0.0, 'compound': 0.0}",0.0,positive,35.6729639,-79.0392919,United States
+7,13,1181602271869591552,髑髏☠️,1525870024577064960,日本,2022-05-15 16:05:37+00:00,"RT @ miguei_777: /
+     Be sure to hit someone every day 🎯
+✨ Selectable 3000 yen
+Gift certificate lottery for 1 person
+Twice
+Present 🎁
+\
+
+🔻 How to apply 🔻
+1️⃣ Follow
+2️⃣ Complete this post with RT ^ _ ^
+Deadline 5/16 23:59
+
+Amazon / iTunes / P…","{'neg': 0.0, 'neu': 0.814, 'pos': 0.186, 'compound': 0.8779}",0.8779,positive,36.5748441,139.2394179,Japan
+8,15,4765359972,ネコラ@猫をこよなく愛する人🐈🐾,1525870012430688256,東京最南,2022-05-15 16:05:34+00:00,"Because it can't be helped
+Priority is given to walking 🐈🐾😭
+#Continued tonight's cat
+#I want to connect with cat lovers https://t.co/hNcBarfMCy","{'neg': 0.097, 'neu': 0.755, 'pos': 0.148, 'compound': 0.1531}",0.1531,positive,35.0108757,135.7551699,Japan
+9,16,1325198368327413761,Parmenion62,1525869989097611264,"Bristol, England",2022-05-15 16:05:29+00:00,"RT @gardening_kate: Daughter awaiting an Uber to go A&E at uni now as still sh!tting mucous, fainting. Having called 111 again they can't s…","{'neg': 0.0, 'neu': 1.0, 'pos': 0.0, 'compound': 0.0}",0.0,positive,51.47091115,-2.5790334025708415,United Kingdom
+10,17,1304622358276141056,走れうしー@uber配達員,1525869962421645312,日本 東京,2022-05-15 16:05:22+00:00,"@Uber_kaze emits light! ??
+It's a delicious name 🐮💖 Pack https://t.co/GSIBkSz4ZC","{'neg': 0.0, 'neu': 0.506, 'pos': 0.494, 'compound': 0.8946}",0.8946,positive,35.6828387,139.7594549,Japan
+11,18,143561607,scouserdownsouth-i❤️JC✋,1525869961381662722,South Wales 🏴󠁧󠁢󠁷󠁬󠁳󠁿,2022-05-15 16:05:22+00:00,"RT @StevenGWalker74: ""Labour heavyweight Wes Streeting"" 😳
+
+No surprise to see uber-Blairite Lord Cashman amongst those ponying up towards W…","{'neg': 0.083, 'neu': 0.917, 'pos': 0.0, 'compound': -0.2057}",-0.2057,negative,42.7089493,-78.5780796,United States
+12,19,50045830,Luiza Sá,1525869960471379968,Rio de Janeiro - Brazil,2022-05-15 16:05:22+00:00,"Leclerc in Monaco can only ride an Uber or ride, po. https://t.co/K8ziOqxo5b","{'neg': 0.0, 'neu': 1.0, 'pos': 0.0, 'compound': 0.0}",0.0,positive,-22.9110137,-43.2093727,Brazil

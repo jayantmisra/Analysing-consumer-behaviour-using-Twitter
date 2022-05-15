@@ -63,6 +63,7 @@ def main():
     analysed_tweets = sentiments(tweets)
     print(analysed_tweets)
     # 'analysed_tweets' is the final data yet
+    return analysed_tweets
 
 
 # calling the main function

@@ -98,7 +98,7 @@ def heat(request):
         else:
             keyword = "uber"
         # print(keyword)
-        max_r = 80
+        max_r = 40
 
         tweets = tweet_data(api, keyword, int(max_r))
         # print(tweets['User Location'])

@@ -81,8 +81,8 @@
       <button style="background-color: #ad974f" onclick=window.open("http://127.0.0.1:8000/plotting/map/",'_blank')>
         Polotting Map
       </button>
-      <button style="background-color: #ad974f" onclick="changeOpacity()">
-        Change opacity
+      <button style="background-color: #ad974f" onclick=window.open("http://127.0.0.1:8000/plotting/sentiment/","_self");>
+        Sentiment
       </button>
     </span>
     <form action="/display/md/" method="get">
@@ -155,6 +155,7 @@
           function toggleHeatmap() {
             heatmap.setMap(heatmap.getMap() ? null : map);
           }
+          
 
           // Heatmap data:  Points，
           function getPoints() {
