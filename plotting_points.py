@@ -27,7 +27,6 @@ def calculate_color(sentiment):
 
 
 def scatter_plot(map_fig, tweets):
-    translator = Translator()
     info_box_template = """
             <d1>
             <dt>{Country}</dt>
@@ -40,7 +39,7 @@ def scatter_plot(map_fig, tweets):
             """
 
     cluster_info_text = [info_box_template.format(Sentiment=str(tweets['compound'][i]),
-                                                  Tweet=translator.translate((tweets['Text'][i])).text,
+                                                  Tweet=(tweets['Text'][i]),
                                                   Country=str(tweets['Country'][i])) for i in range(len(tweets['compound']))]
     colors = []
     for i in range(len(tweets['User Location'])):
