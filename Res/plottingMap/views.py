@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import redirect, render
 import tweepy
 import pandas as pd
@@ -532,10 +533,11 @@ def cluster_map(request):
                 scales[i] = 5
 
         info_box_template = """
+
         <d1>
         <dt>Location</dt><dd>[{Latitude} , {Longitude}]</dd>
         <dt>Sentiment</dt><dd>{Sentiment}</dd>
-        <button type="button" id= {i} >Details</button>
+        <button type="button" id= {i} onclick =javascript:alert("test");>Details</button>
         </d1>
     
         """
@@ -586,6 +588,8 @@ def cluster_map(request):
     # geojson_layer(m, countries_geojson, tweet_data1)
     cluster_info = cluster_map(m, tweet_data1, int(
         math.sqrt(len(tweet_data1.index))))
+    details = []
+
     # scatter_plot(m, tweet_data1)
 
     embed_minimal_html('templates/cluster.html', views=[m])
