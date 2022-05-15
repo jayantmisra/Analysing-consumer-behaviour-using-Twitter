@@ -1,4 +1,4 @@
- # Credentials can be changed here depending on the user
+# Credentials can be changed here depending on the user
 api_key = "YJKQrvmFj4IOSv27nonp8aBGx"
 api_secret = "3wDOUZcAAeTGvH4cNBjgAGYJ2gqYqOEc80rUI3oanGl9igjqbG"
 access_token = "1364148883329220609-WEj8Ijit8g79xor6qCRqJ7pMHAqdIe"

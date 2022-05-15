@@ -39,7 +39,8 @@ def scatter_plot(map_fig, tweets):
             """
 
     cluster_info_text = [info_box_template.format(Sentiment=str(tweets['compound'][i]),
-                                                  Tweet=translator.translate((tweets['Text'][i])).text,
+                                                  Tweet=translator.translate(
+                                                      (tweets['Text'][i])).text,
                                                   Country=str(tweets['Country'][i])) for i in range(len(tweets['compound']))]
     colors = []
     for i in range(len(tweets['User Location'])):
@@ -47,7 +48,8 @@ def scatter_plot(map_fig, tweets):
 
     locations = tweets[['Latitude', 'Longitude']]
 
-    scatter_layer = gmaps.symbol_layer(locations, fill_color=colors, stroke_color=colors, info_box_content=cluster_info_text)
+    scatter_layer = gmaps.symbol_layer(
+        locations, fill_color=colors, stroke_color=colors, info_box_content=cluster_info_text)
     map_fig.add_layer(scatter_layer)
 
 
@@ -131,7 +133,8 @@ def heatmap_layer(map_figure, tweets):
 
 
 def create_clusters(locations, number_clusters):
-    kmeans = KMeans(n_clusters=number_clusters, init='k-means++', random_state=10, max_iter=200)
+    kmeans = KMeans(n_clusters=number_clusters,
+                    init='k-means++', random_state=10, max_iter=200)
     y_kmeans = kmeans.fit_predict(locations[['Longitude', 'Latitude']])
     locations['cluster'] = y_kmeans
     avg_sentiment, Lat, Long, cluster_sizes = [], [], [], []
@@ -158,7 +161,8 @@ def create_clusters(locations, number_clusters):
 
 def cluster_map(map_fig, tweets, number_clusters):
     clusters = create_clusters(tweets, number_clusters)
-    sentiment_color = [calculate_color(color) for color in clusters['Sentiment']]
+    sentiment_color = [calculate_color(color)
+                       for color in clusters['Sentiment']]
     scales = clusters['Size'].tolist()
     minmax_scale(scales)
     for i in range(len(scales)):
@@ -175,7 +179,8 @@ def cluster_map(map_fig, tweets, number_clusters):
 
     """
 
-    cluster_info_text = [info_box_template.format(Sentiment=i) for i in clusters['Sentiment']]
+    cluster_info_text = [info_box_template.format(
+        Sentiment=i) for i in clusters['Sentiment']]
 
     cluster_layer = gmaps.symbol_layer(clusters[['Lat', 'Long']],
                                        fill_color=sentiment_color,
@@ -207,18 +212,18 @@ figure_layout = {
 }
 
 m = gmaps.figure(zoom_level=1, layout=figure_layout, center=[0, 0])
-countries_geojson = gmaps.geojson_geometries.load_geometry('countries-high-resolution')
+countries_geojson = gmaps.geojson_geometries.load_geometry(
+    'countries-high-resolution')
 
-#tweet_data = pd.read_csv('tweet_data.csv')
+# tweet_data = pd.read_csv('tweet_data.csv')
 tweet_data = Tweets.main()
-#tweet_data = db.query("SELECT * FROM Tweets WHERE rowid >= 10110 AND rowid <= 10460")
+# tweet_data = db.query("SELECT * FROM Tweets WHERE rowid >= 10110 AND rowid <= 10460")
 tweet_data = tweet_prep(tweet_data)
 tweet_data.to_csv('tweet_data.csv')
 
 
-
 geojson_layer(m, countries_geojson, tweet_data)
-#cluster_map(m, tweet_data, int(math.sqrt(len(tweet_data.index))))
-#scatter_plot(m, tweet_data)
+# cluster_map(m, tweet_data, int(math.sqrt(len(tweet_data.index))))
+# scatter_plot(m, tweet_data)
 
 embed_minimal_html('export.html', views=[m])

@@ -78,8 +78,8 @@
       >
         Potential Customer
       </button>
-      <button style="background-color: #ad974f" onclick="changeRadius()">
-        Change radius
+      <button style="background-color: #ad974f" onclick=window.open("http://127.0.0.1:8000/plotting/map/",'_blank')>
+        Polotting Map
       </button>
       <button style="background-color: #ad974f" onclick="changeOpacity()">
         Change opacity
@@ -123,6 +123,8 @@
           var loc = {{loc|safe}}
           var map, heatmap;
           place = []
+          sentiment_p = []
+          sentiment_n = []
           function initMap() {
             map = new google.maps.Map(document.getElementById("map"), {
               zoom: 3,
@@ -137,7 +139,9 @@
               opacity: 0.8,
               gradient: gradient,
             });
-          }
+
+            
+        }
           //
           var gradient = [
             "rgba(0, 255, 0, 0)",
@@ -182,6 +186,7 @@
           }
           */
           }
+         
     </script>
 
     <script

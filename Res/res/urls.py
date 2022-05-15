@@ -26,6 +26,7 @@ urlpatterns = [
     path('home/', include('login.urls')),
     path('display/', include('MapDisplay.urls')),
     path('', views.signin),
+    path('plotting/', include('plottingMap.urls')),
     # path('login/', views.signin),
     # path('register/', views.register),
     # path('reset/', views.reset),
