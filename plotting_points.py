@@ -1,6 +1,5 @@
 import pandas as pd
 from sklearn.cluster import KMeans
-import numpy as np
 import matplotlib.cm as cm
 from matplotlib.colors import to_hex, Normalize
 import gmaps.geojson_geometries
@@ -9,9 +8,7 @@ from ipywidgets.embed import embed_minimal_html
 import gmaps
 from geopy.geocoders import Nominatim
 import Tweets
-from googletrans import Translator
 import math
-
 
 gmaps.configure('AIzaSyDYXPLgcTlgMqebFc_da8nO72--5XS5CZ8')
 
@@ -100,7 +97,7 @@ def geojson_layer(map_figure, countries_geojson, tweet_data):
 
 
 def geocode_locations(tweet_data):
-    geolocator = Nominatim(user_agent="plotting_points", timeout=300)
+    geolocator = Nominatim(user_agent="plotting_points", timeout=20)
     lat, long, country = [], [], []
     for i in tweet_data['User Location']:
         if i == '':
@@ -133,48 +130,56 @@ def create_clusters(locations, number_clusters):
     kmeans = KMeans(n_clusters=number_clusters, init='k-means++', random_state=10, max_iter=200)
     y_kmeans = kmeans.fit_predict(locations[['Longitude', 'Latitude']])
     locations['cluster'] = y_kmeans
-    avg_sentiment, Lat, Long, cluster_sizes= [], [], [], []
+    avg_sentiment, Lat, Long, cluster_sizes = [], [], [], []
+    clusters_indicies = [[] for _ in range(number_clusters)]
 
     for i in range(kmeans.n_clusters):
-        cluster_indicies = np.where(kmeans.labels_ == i)[0]
         sum_sentiment = 0
-        for x in cluster_indicies:
-            sum_sentiment += locations.compound[x]
+        inside_clusters = []
+        for ind, row in locations.loc[(locations['cluster'] == i)].iterrows():
+            sum_sentiment += row.compound
+            inside_clusters.append(row['index'])
+        clusters_indicies[i] = (inside_clusters)
 
-        avg_sentiment.append(sum_sentiment / len(cluster_indicies))
-        cluster_sizes.append(len(cluster_indicies) * 5)
-        Long.append(kmeans.cluster_centers_[i][0])
-        Lat.append(kmeans.cluster_centers_[i][1])
+        avg_sentiment.append(sum_sentiment / len(inside_clusters))
+        cluster_sizes.append(len(inside_clusters) * 5)
+        Long.append(round(kmeans.cluster_centers_[i][0], 3))
+        Lat.append(round(kmeans.cluster_centers_[i][1], 3))
 
-        clusters_data = {'Lat': Lat,
-                         'Long': Long,
-                         'Size': cluster_sizes,
-                         'Sentiment': avg_sentiment}
-        clusters = pd.DataFrame(clusters_data)
+    clusters_data = {'Lat': Lat,
+                     'Long': Long,
+                     'Size': cluster_sizes,
+                     'Sentiment': avg_sentiment}
+    clusters = pd.DataFrame(clusters_data)
 
-    return clusters
+    return clusters, clusters_indicies
 
 
 def cluster_map(map_fig, tweets, number_clusters):
     clusters = create_clusters(tweets, number_clusters)
+    cluster_indicies = clusters[1]
+    clusters = clusters[0]
     sentiment_color = [calculate_color(color) for color in clusters['Sentiment']]
     scales = clusters['Size'].tolist()
     minmax_scale(scales)
     for i in range(len(scales)):
         scales[i] = int(scales[i] / 3)
         if scales[i] <= 0:
-            scales[i] = 1
+            scales[i] = 5
 
     info_box_template = """
     <d1>
+    <dt>Location</dt><dd>[{Latitude} , {Longitude}]</dd>
     <dt>Sentiment</dt><dd>{Sentiment}</dd>
-    <button type="button">Stats</button>
-    <button type="button">Pie</button>
+    <button type="button" id= {i} >Details</button>
     </d1>
 
     """
 
-    cluster_info_text = [info_box_template.format(Sentiment=i) for i in clusters['Sentiment']]
+    cluster_info_text = [info_box_template.format(Sentiment=clusters['Sentiment'][i],
+                                                  Latitude=clusters['Lat'][i],
+                                                  Longitude=clusters['Long'][i],
+                                                  i=i) for i in range(len(clusters['Sentiment']))]
 
     cluster_layer = gmaps.symbol_layer(clusters[['Lat', 'Long']],
                                        fill_color=sentiment_color,
@@ -185,6 +190,7 @@ def cluster_map(map_fig, tweets, number_clusters):
                                        display_info_box=True,
                                        info_box_content=cluster_info_text)
     map_fig.add_layer(cluster_layer)
+    return cluster_indicies
 
 
 def tweet_prep(tweet_data):
@@ -197,7 +203,6 @@ def tweet_prep(tweet_data):
 
     return tweet_data
 
-
 figure_layout = {
     'width': '100%',
     'height': '750px',
@@ -205,7 +210,6 @@ figure_layout = {
     'padding': '2px'
 }
 
-m = gmaps.figure(zoom_level=1, layout=figure_layout, center=[0, 0])
 countries_geojson = gmaps.geojson_geometries.load_geometry('countries-high-resolution')
 
 #tweet_data = pd.read_csv('tweet_data.csv')
@@ -213,13 +217,15 @@ tweet_data = Tweets.main()
 tweet_data = tweet_prep(tweet_data)
 #tweet_data.to_csv('tweet_data.csv')
 
+m = gmaps.figure(zoom_level=1, layout=figure_layout, center=[0, 0])
 n = gmaps.figure(zoom_level=1, layout=figure_layout, center=[0, 0])
 o = gmaps.figure(zoom_level=1, layout=figure_layout, center=[0, 0])
 
 geojson_layer(m, countries_geojson, tweet_data)
-cluster_map(n, tweet_data, int(math.sqrt(len(tweet_data.index))))
+cluster_data = cluster_map(n, tweet_data, int(math.sqrt(len(tweet_data.index))))
 scatter_plot(o, tweet_data)
 
 embed_minimal_html('geojson.html', views=[m])
 embed_minimal_html('cluster_map.html', views=[n])
 embed_minimal_html('scatter_plot.html', views=[o])
+
