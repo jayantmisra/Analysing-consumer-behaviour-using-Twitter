@@ -22,38 +22,15 @@ from geopy.geocoders import Nominatim
 # Create your views here.
 
 
-'''def baidu(request):
-    def gain_location(address):
-        api_url = "https://api.map.baidu.com/geocoding/v3/?address={address}&output=json&ak=nuWcnCwfhh2ERziyZiqvS6dHomiIMVEd&callback=showLocation".format(
-            address=address)
-        r = requests.get(api_url)
-        r = r.text
-        r = r.strip('showLocation&&showLocation(')
-        r = r.strip(')')
-        jsonData = json.loads(r)
-        return jsonData
-    with open(r'MapDisplay\11.csv', encoding='UTF-8') as csvfile:
-        reader = csv.reader(csvfile)
-        for line in reader:
-            if reader.line_num == 1:
-                continue
-            if gain_location(line[0]).get('result', False):
-                try:
-                    lng = gain_location(line[0])[
-                        'result']['location']['lng']  # 经度
-                    lat = gain_location(line[0])[
-                        'result']['location']['lat']  # 纬度
-                    count = line[1]  # 地名计数
-                    # 将经度，纬度，计数变成格式
-                    str_temp = '{"lat":' + str(lat) + ',"lng":' + \
-                        str(lng) + ',"count":' + str(count) + '},'
-                    print(str_temp)
-                except:
-                    print(line[0])  # 打印出出问题的地名
-    return render(request, 'heatmap.html')'''
+def heat(request):
 
+    # Credentials can be changed here depending on the user
+    api_key = "YJKQrvmFj4IOSv27nonp8aBGx"
+    api_secret = "3wDOUZcAAeTGvH4cNBjgAGYJ2gqYqOEc80rUI3oanGl9igjqbG"
+    access_token = "1364148883329220609-WEj8Ijit8g79xor6qCRqJ7pMHAqdIe"
+    access_token_secret = "LNZWMyDykX0x2oHe5i8z3dLF1g4lMWQsSszaZDNNJsECE"
+    bearer_token = "AAAAAAAAAAAAAAAAAAAAAGjjVgEAAAAArOMqLJZ0092d0YcI2z2FBEF6ZUg%3DYh0UCSP4kAYkYFmRkrJnuHMMwMhvz7VIyJtWdlbiT1PqOyXrHw"
 
-def plotting(request):
     def authenticate(api_key, api_secret, access_token, access_token_secret):
         auth = tweepy.OAuthHandler(api_key, api_secret)
         auth.set_access_token(access_token, access_token_secret)
@@ -62,6 +39,9 @@ def plotting(request):
         return api
 
         # function to recieve data
+    def auth():
+        client = tweepy.Client(bearer_token)
+        return client
 
     def tweet_data(api, keyword, max_r):
         tweets = tweepy.Cursor(api.search_tweets, q=keyword).items(max_r)
@@ -90,27 +70,41 @@ def plotting(request):
     # main method
 
     def m():
-        # Credentials can be changed here depending on the user
-        api_key = "YJKQrvmFj4IOSv27nonp8aBGx"
-        api_secret = "3wDOUZcAAeTGvH4cNBjgAGYJ2gqYqOEc80rUI3oanGl9igjqbG"
-        access_token = "1364148883329220609-WEj8Ijit8g79xor6qCRqJ7pMHAqdIe"
-        access_token_secret = "LNZWMyDykX0x2oHe5i8z3dLF1g4lMWQsSszaZDNNJsECE"
+        api = authenticate(api_key, api_secret,
+                           access_token, access_token_secret)
 
         # To take name of the brand and max number of tweets from the user
         if 'kw' in request.GET and request.GET['kw']:
             keyword = request.GET['kw']
         else:
-            keyword = "cardiff"
+            keyword = "uber"
         # print(keyword)
         max_r = 80
-
-        api = authenticate(api_key, api_secret,
-                           access_token, access_token_secret)
         tweets = tweet_data(api, keyword, int(max_r))
         # print(tweets['User Location'])
         # analysed_tweets = sentiments(tweets)
         # print(analysed_tweets)
         return tweets
+        # 'analysed_tweets' is the final data yet
+
+    def m1():
+        # Credentials can be changed here depending on the user
+        api = authenticate(api_key, api_secret,
+                           access_token, access_token_secret)
+
+        # To take name of the brand and max number of tweets from the user
+        if 'kw' in request.GET and request.GET['kw']:
+            keyword = request.GET['kw']
+        else:
+            keyword = "uber"
+        # print(keyword)
+        max_r = 40
+
+        tweets = tweet_data(api, keyword, int(max_r))
+        # print(tweets['User Location'])
+        analysed_tweets = sentiments(tweets)
+        # print(analysed_tweets)
+        return analysed_tweets
         # 'analysed_tweets' is the final data yet
 
     gmaps.configure('AIzaSyDYXPLgcTlgMqebFc_da8nO72--5XS5CZ8')
@@ -241,6 +235,7 @@ def plotting(request):
     # m = gmaps.figure(zoom_level=1, layout=figure_layout, center=[0, 0])
     tweet_data1 = m()
     lat_long = geocode_locations(tweet_data)
+    tweet_sentiment = m1()
     tweet_data1['Latitude'] = lat_long[0]
     tweet_data1['Longitude'] = lat_long[1]
     tweet_data1['Country'] = lat_long[2]
@@ -250,10 +245,12 @@ def plotting(request):
     for i in range(40):
         if(lat_long[0][i] is not None and lat_long[1][i] is not None):
             location.append({"lat": lat_long[0][i],
-                             "long": lat_long[1][i]})
+                             "long": lat_long[1][i],
+                             "sentiment": tweet_sentiment['comp_score'][i]})
         else:
             location.append({"lat": random.randint(0, 70),
-                             "long": random.randint(-3, 120)})
+                             "long": random.randint(-3, 120),
+                             "sentiment": tweet_sentiment['comp_score'][i]})
     return render(request, 'googleHeatMap.html', {'loc': json.dumps(location)})
     # tweet_data.dropna(axis=0, inplace=True)
     # tweet_data = tweet_data.reset_index()
@@ -263,6 +260,17 @@ def plotting(request):
 
 
 def customer(request):
+    # Credentials can be changed here depending on the user
+    api_key = "YJKQrvmFj4IOSv27nonp8aBGx"
+    api_secret = "3wDOUZcAAeTGvH4cNBjgAGYJ2gqYqOEc80rUI3oanGl9igjqbG"
+    access_token = "1364148883329220609-WEj8Ijit8g79xor6qCRqJ7pMHAqdIe"
+    access_token_secret = "LNZWMyDykX0x2oHe5i8z3dLF1g4lMWQsSszaZDNNJsECE"
+    bearer_token = "AAAAAAAAAAAAAAAAAAAAAGjjVgEAAAAArOMqLJZ0092d0YcI2z2FBEF6ZUg%3DYh0UCSP4kAYkYFmRkrJnuHMMwMhvz7VIyJtWdlbiT1PqOyXrHw"
+
+    def auth():
+        client = tweepy.Client(bearer_token)
+        return client
+
     def authenticate(api_key, api_secret, access_token, access_token_secret):
         auth = tweepy.OAuthHandler(api_key, api_secret)
         auth.set_access_token(access_token, access_token_secret)
@@ -299,11 +307,6 @@ def customer(request):
     # main method
 
     def m1():
-        # Credentials can be changed here depending on the user
-        api_key = "YJKQrvmFj4IOSv27nonp8aBGx"
-        api_secret = "3wDOUZcAAeTGvH4cNBjgAGYJ2gqYqOEc80rUI3oanGl9igjqbG"
-        access_token = "1364148883329220609-WEj8Ijit8g79xor6qCRqJ7pMHAqdIe"
-        access_token_secret = "LNZWMyDykX0x2oHe5i8z3dLF1g4lMWQsSszaZDNNJsECE"
 
         # To take name of the brand and max number of tweets from the user
         if 'kw' in request.GET and request.GET['kw']:

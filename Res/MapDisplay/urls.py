@@ -5,7 +5,7 @@ from . import views
 urlpatterns = [
     # path('map/', views.plotting),
     # path('md/', views.baidu)
-    path('md/', views.plotting),
+    path('md/', views.heat),
     path('customer/', views.customer)
 
 ]

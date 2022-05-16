@@ -12,9 +12,8 @@
       #errormsg {
         color: red;
       }
-      
     </style>
-      <body style="background-color:#EAEAEA;"></body>
+    <body style="background-color: #eaeaea"></body>
   </head>
   <body>
     <form method="POST" action="/display/md/">
@@ -25,28 +24,37 @@
           alt="load.."
           class="userpic"
         />
-        <nav class="navbar" style="background-color:#231f20;">
-       <center><h1 style="color:#ad974f;"id="q">Sign in</h1></center>
-       </nav>
+        <h1 id="q">Sign in</h1>
+
         {%if msg%} <span id="errormsg">{{msg}}</span> {%endif%}
-        <center><p>Username</p>
-        <input
-          type="text"
-          name="usr"
-          placeholder="Enter Username"
-          required="required"
-        /></center>
-       <center><p>Password</p>
-        <input
-          type="password"
-          name="pwd"
-          placeholder="Enter Password"
-          required="required"
-        /></center>
-        <center style="padding-top: 15px;" ><input type="submit" name="" value="Login" /></center>
-        <center style="padding-top: 15px;"><a href="http://127.0.0.1:8000/home/reset">Forget your password?</a
-        ><br /></center>
-        <center style="padding-top: 15px;"><a href="http://127.0.0.1:8000/home/register">Sign Up</a><br /></center>
+        <center>
+          <p>Username</p>
+          <input
+            type="text"
+            name="usr"
+            placeholder="Enter Username"
+            required="required"
+          />
+        </center>
+        <center>
+          <p>Password</p>
+          <input
+            type="password"
+            name="pwd"
+            placeholder="Enter Password"
+            required="required"
+          />
+        </center>
+        <center style="padding-top: 15px">
+          <input type="submit" name="" value="Login" />
+        </center>
+        <center style="padding-top: 15px">
+          <a href="http://127.0.0.1:8000/home/reset">Forget your password?</a
+          ><br />
+        </center>
+        <center style="padding-top: 15px">
+          <a href="http://127.0.0.1:8000/home/register">Sign Up</a><br />
+        </center>
       </div>
     </form>
   </body>

@@ -78,11 +78,22 @@
       >
         Potential Customer
       </button>
-      <button style="background-color: #ad974f" onclick="changeRadius()">
-        Change radius
+      <select style="background-color: #ad974f" id="menu">
+        <option value="1">
+        Polotting Map
+        </option>
+        <option value="2">
+          Cluster Map
+          </option>
+          <option value="3">
+            GeoJson Map
+            </option>
+      </select>
+      <button style="background-color: #ad974f" onclick=window.open("http://127.0.0.1:8000/plotting/sentiment/","_self");>
+        Sentiment
       </button>
-      <button style="background-color: #ad974f" onclick="changeOpacity()">
-        Change opacity
+      <button style="background-color: #ad974f" onclick=window.open("http://127.0.0.1:8000/plotting/interest/","_self");>
+        Interest
       </button>
     </span>
     <form action="/display/md/" method="get">
@@ -102,7 +113,6 @@
       </span>
     </form>
     <div id="map"></div>
-    <script type="text/javascript"></script>
     <script type="text/javascript">
       window.onload = function () {
         var key = document.getElementById("keyWord");
@@ -114,6 +124,20 @@
             key.value = "Enter the key word here";
           }
         };
+        var obj_select = document.getElementById("menu")
+        
+          obj_select.onchange =  function(){
+            var index = obj_select.selectedIndex
+            if(obj_select.options[index].value==1){
+              window.open("http://127.0.0.1:8000/plotting/map/","_blank")
+            }
+            if(obj_select.options[index].value==2){
+              window.open("http://127.0.0.1:8000/plotting/cluster/","_blank")
+            }
+            if(obj_select.options[index].value==3){
+              window.open("http://127.0.0.1:8000/plotting/geojson/","_blank")
+            }
+          }
       };
     </script>
     <script type="text/javascript">
@@ -123,6 +147,8 @@
           var loc = {{loc|safe}}
           var map, heatmap;
           place = []
+          sentiment_p = []
+          sentiment_n = []
           function initMap() {
             map = new google.maps.Map(document.getElementById("map"), {
               zoom: 3,
@@ -137,7 +163,9 @@
               opacity: 0.8,
               gradient: gradient,
             });
-          }
+
+            
+        }
           //
           var gradient = [
             "rgba(0, 255, 0, 0)",
@@ -151,6 +179,7 @@
           function toggleHeatmap() {
             heatmap.setMap(heatmap.getMap() ? null : map);
           }
+          
 
           // Heatmap data:  Points，
           function getPoints() {
@@ -182,6 +211,7 @@
           }
           */
           }
+         
     </script>
 
     <script
