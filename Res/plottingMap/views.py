@@ -238,6 +238,7 @@ def plotting_points(request):
 
 
 def sentiment_graph(request):
+    # need to change the path here
     df = pd.read_csv(
         'D:\\python code\\Register\\Res\\templates\\tweet_data.csv')
 
@@ -491,6 +492,7 @@ def cluster_map(request):
 
 
 def geo_json(request):
+
     # Credentials can be changed here depending on the user
     api_key = "YJKQrvmFj4IOSv27nonp8aBGx"
     api_secret = "3wDOUZcAAeTGvH4cNBjgAGYJ2gqYqOEc80rUI3oanGl9igjqbG"
@@ -700,3 +702,7 @@ def geo_json(request):
     # scatter_plot(m, tweet_data1)
     embed_minimal_html('templates/geojson.html', views=[m])
     return render(request, 'geojson.html')
+
+
+def inter(request):
+    return render(request, 'interests.html')
