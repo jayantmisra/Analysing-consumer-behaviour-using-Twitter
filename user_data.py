@@ -127,8 +127,9 @@ def main(user_id):
     
 # calling the main function
 if __name__ ==  "__main__":
-    user_id = "1364148883329220609" # male
-    user_id = "1040587167230124032" # female
+    # just for test
+    user_id = "" # male
+    user_id = "" # female
     
     #user_id = input("Enter the user id:")
     main(user_id)
