@@ -76,7 +76,7 @@ def plotting_points(request):
 
         # To take name of the brand and max number of tweets from the user
         keyword = "uber"
-        max_r = 40
+        max_r = 80
 
         api = authenticate(api_key, api_secret,
                            access_token, access_token_secret)
@@ -315,7 +315,7 @@ def cluster_map(request):
 
         # To take name of the brand and max number of tweets from the user
         keyword = "uber"
-        max_r = 50
+        max_r = 80
 
         api = authenticate(api_key, api_secret,
                            access_token, access_token_secret)
@@ -419,7 +419,7 @@ def cluster_map(request):
     def cluster_map(map_fig, tweets, number_clusters):
         clusters = create_clusters(tweets, number_clusters)
         # print(clusters)
-        cluster_indicies = clusters[1]
+        cluster_data = clusters[1]
         clusters = clusters[0]
         sentiment_color = [calculate_color(color)
                            for color in clusters['Sentiment']]
@@ -437,7 +437,7 @@ def cluster_map(request):
         <dt>Sentiment</dt><dd>{Sentiment}</dd>
         <button type="button" id= {i} onclick="";>Details</button>
         </d1>
-    
+
         """
 
         cluster_info_text = [info_box_template.format(Sentiment=clusters['Sentiment'][i],
@@ -454,7 +454,7 @@ def cluster_map(request):
                                            display_info_box=True,
                                            info_box_content=cluster_info_text)
         map_fig.add_layer(cluster_layer)
-        return cluster_indicies
+        return cluster_data
 
     def tweet_prep(tweet_data):
         lat_long = geocode_locations(tweet_data)
@@ -481,10 +481,11 @@ def cluster_map(request):
     # tweet_data = db.query("SELECT * FROM Tweets WHERE rowid >= 10110 AND rowid <= 10460")
     tweet_data1 = tweet_prep(tweet_data1)
     tweet_data1.to_csv('templates/tweet_data.csv')
-    print(tweet_data1)
+    # print(tweet_data1)
     # geojson_layer(m, countries_geojson, tweet_data1)
     # cluster_info = cluster_map(m, tweet_data1, int(math.sqrt(len(tweet_data1.index))))
-
+    cluster_data = cluster_map(m, tweet_data1, int(
+        math.sqrt(len(tweet_data1.index))))
     # scatter_plot(m, tweet_data1)
     # print(details)
     embed_minimal_html('templates/cluster.html', views=[m])
@@ -520,7 +521,7 @@ def geo_json(request):
                         tweet.user.location, tweet.created_at, tweet.text] for tweet in tweets]
         # Converting the data to Pandas DataFrame
         tweets_df = pd.DataFrame(tweets_list, columns=[
-                                 'UserID', 'Name', 'TweetID', 'User Location', 'Date and Time', 'Text'])
+            'UserID', 'Name', 'TweetID', 'User Location', 'Date and Time', 'Text'])
         return tweets_df
 
     # function to perform Sentiment Analysis
@@ -549,7 +550,7 @@ def geo_json(request):
 
         # To take name of the brand and max number of tweets from the user
         keyword = "uber"
-        max_r = 40
+        max_r = 80
 
         api = authenticate(api_key, api_secret,
                            access_token, access_token_secret)
