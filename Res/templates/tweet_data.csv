@@ -1,6 +1,32 @@
 ,index,UserID,Name,TweetID,User Location,Date and Time,Text,scores,compound,comp_score,Latitude,Longitude,Country
-0,0,246426805,Tannis Vine,1525905038123716608,"Ottawa, Ontario",2022-05-15 18:24:45+00:00,@mirgray @OC_Transpo Your time accounts for something. My husband spent up to 3hrs a day on the bus & LRT. He’s wor… https://t.co/FAyvcCbnbm,"{'neg': 0.0, 'neu': 1.0, 'pos': 0.0, 'compound': 0.0}",0.0,positive,45.3969506,-75.6851593,Canada
-1,1,1502007185525690375,DazCFC⭐️⭐️,1525905036831866880,Essex,2022-05-15 18:24:45+00:00,"RT @iamtomskinner: Lots of tweets about how expensive the price of Uber is now especially in london.
+0,1,1480391002779447297,ライフライン事業新規人材募集,1526128086311632901,東京,2022-05-16 09:11:04+00:00,"We are looking for a new outsourcer for the lifeline business.
+It will be a job to have you operate in Tokyo with a bicycle, a motorcycle, etc. If you are interested, I would appreciate it if you could DM it.
+First of all, just talk about it!
+#Jobs #Food Delivery #Human Resources Recruitment #Recruitment ... https://t.co/zazYIHH9VF","{'neg': 0.0, 'neu': 0.906, 'pos': 0.094, 'compound': 0.69}",0.69,positive,35.6828387,139.7594549,Japan
+1,13,1284771296149217281,Uber_saint,1526128014827954179,"Roma, Lazio",2022-05-16 09:10:47+00:00,@ Alessio_Gio97 And instead I touch you ... but look what a pity 😏,"{'neg': 0.167, 'neu': 0.833, 'pos': 0.0, 'compound': -0.4215}",-0.4215,negative,41.8933203,12.4829321,Italy
+2,16,1240356381762469889,Nascimento. 🌙,1526127989330792450,"Rio de Janeiro, Brasil  ",2022-05-16 09:10:41+00:00,"I'm going to uber work, just Duda, man lol","{'neg': 0.0, 'neu': 0.741, 'pos': 0.259, 'compound': 0.4215}",0.4215,positive,-22.9110137,-43.2093727,Brazil
+3,17,1442246179798978561,オキテスグメシ🏇,1526127986961182721,関西,2022-05-16 09:10:40+00:00,"RT @ miguei_777: /
+     Be sure to hit someone every day 🎯
+🎉 Selectable 3000 yen
+Gift certificate lottery for 1 person
+Twice
+Present 🎉
+\
 
-That’s why I only get black cabs! The…","{'neg': 0.0, 'neu': 1.0, 'pos': 0.0, 'compound': 0.0}",0.0,positive,51.77046785,0.46466977412300386,United Kingdom
-2,2,2728285753,The Rodent Emporer (ง'̀-'́)ง ☾,1525905030439526400,Australia,2022-05-15 18:24:43+00:00,I have to leave for the airport in less than 10minutes and there are no uber drivers 🥲 I booked in advance too…I ca… https://t.co/YmOY2bZcPJ,"{'neg': 0.129, 'neu': 0.871, 'pos': 0.0, 'compound': -0.34}",-0.34,negative,-24.7761086,134.755,Australia
+🔻 How to apply 🔻
+1️⃣ Follow
+2️⃣ Complete this post with RT ^ _ ^
+Deadline 5/12 23:59
+
+Amazon / iTunes / P…","{'neg': 0.0, 'neu': 0.814, 'pos': 0.186, 'compound': 0.8834}",0.8834,positive,33.21935,107.565774,China
+4,20,15915618,Maduoma™,1526127966497001473,United Kingdom,2022-05-16 09:10:35+00:00,I remember discussing with my Uber driver who took me to ATL about guns and gun control and He’s a gun nut to put i… https://t.co/O9XLtBcIY3,"{'neg': 0.167, 'neu': 0.833, 'pos': 0.0, 'compound': -0.5859}",-0.5859,negative,54.7023545,-3.2765753,United Kingdom
+5,22,994587875315503104,Rutinha🦋,1526127953385594880,"Comendador Soares, Nova Iguaçu",2022-05-16 09:10:32+00:00,No Uber accepts that hate,"{'neg': 0.808, 'neu': 0.192, 'pos': 0.0, 'compound': -0.8136}",-0.8136,negative,-22.7441615,-43.4839917,Brazil
+6,23,813028303,Nelz,1526127952525672448,"Halifax, Calderdale ",2022-05-16 09:10:32+00:00,RT @gardening_kate: which our daughter had to use as an A&E patient today and she had to get herself there in an Uber as no ambulances avai…,"{'neg': 0.087, 'neu': 0.913, 'pos': 0.0, 'compound': -0.3566}",-0.3566,negative,53.7229229,-1.8604874,United Kingdom
+7,29,1440654903353876483,榎戸世虎,1526127933689307138,有償依頼 ▶️,2022-05-16 09:10:28+00:00,"@Uber_pipisu It's not Madomagi ww
+Even if it becomes poisonous, it can be detoxified!","{'neg': 0.235, 'neu': 0.765, 'pos': 0.0, 'compound': -0.6114}",-0.6114,negative,35.7094381,139.726807,Japan
+8,32,984199015,KC⁷,1526127914479063041,Pasig City,2022-05-16 09:10:23+00:00,RT @dontagala: VP Leni Robredo spent some time with Filipino New Yorkers while waiting for her Uber ride to her destination. She is attendi…,"{'neg': 0.0, 'neu': 1.0, 'pos': 0.0, 'compound': 0.0}",0.0,positive,7.0762932,125.7153565,Philippines
+9,33,1100063890594058242,Kwabena Boateng,1526127912570740737,Kumasi-Ghana,2022-05-16 09:10:23+00:00,RT @EmmanuelQuenzie: Some Uber drivers be gangster ruff. When they see you with your shoody they can even tell you come and drive 😂😂😂😂💔,"{'neg': 0.164, 'neu': 0.538, 'pos': 0.298, 'compound': 0.9136}",0.9136,positive,6.698081,-1.6230404,Ghana
+10,38,1200841494300647426,يـوخــن,1526127899480317952,الرياض,2022-05-16 09:10:19+00:00,"RT @HasanmMattar: Anyone can be a merchant @Amazon
+Anyone can be an investor @Binance
+Anyone Can Be a Content Creator @Twitter
+Anyone can…","{'neg': 0.0, 'neu': 0.928, 'pos': 0.072, 'compound': 0.1779}",0.1779,positive,24.638916,46.7160104,Saudi Arabia

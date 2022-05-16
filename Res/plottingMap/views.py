@@ -155,21 +155,6 @@ def plotting_points(request):
         countries = countries_syntax(countries)
         return countries
 
-    def geojson_layer(map_figure, countries_geojson, tweet_data):
-        countries = country_sentiment(tweet_data)
-        colors = []
-        for feature in countries_geojson['features']:
-            country_name = feature['properties']['name']
-            try:
-                color = calculate_color(countries[country_name])
-            except KeyError:
-                color = '#e0e0e0'
-            colors.append(color)
-
-        gini_layer = gmaps.geojson_layer(countries_geojson, fill_color=colors, stroke_color='#000000',
-                                         fill_opacity=0.8, stroke_weight=0.2)
-        map_figure.add_layer(gini_layer)
-
     def geocode_locations(tweet_data1):
         geolocator = Nominatim(user_agent="plotting_points", timeout=300)
         lat, long, country = [], [], []
@@ -191,12 +176,6 @@ def plotting_points(request):
                     country.append(None)
 
         return lat, long, country
-
-    def heatmap_layer(map_figure, tweets):
-        heatmap = gmaps.heatmap_layer(tweets[['Latitude', 'Longitude']])
-        heatmap.point_radius = 20
-        heatmap.max_intensity = 25
-        map_figure.add_layer(heatmap)
 
     def create_clusters(locations, number_clusters):
         kmeans = KMeans(n_clusters=number_clusters,
@@ -224,39 +203,6 @@ def plotting_points(request):
 
         return clusters
 
-    def cluster_map(map_fig, tweets, number_clusters):
-        clusters = create_clusters(tweets, number_clusters)
-        sentiment_color = [calculate_color(color)
-                           for color in clusters['Sentiment']]
-        scales = clusters['Size'].tolist()
-        minmax_scale(scales)
-        for i in range(len(scales)):
-            scales[i] = int(scales[i] / 3)
-            if scales[i] <= 0:
-                scales[i] = 1
-
-        info_box_template = """
-        <d1>
-        <dt>Sentiment</dt><dd>{Sentiment}</dd>
-        <button type="button">Stats</button>
-        <button type="button">Pie</button>
-        </d1>
-
-        """
-
-        cluster_info_text = [info_box_template.format(
-            Sentiment=i) for i in clusters['Sentiment']]
-
-        cluster_layer = gmaps.symbol_layer(clusters[['Lat', 'Long']],
-                                           fill_color=sentiment_color,
-                                           stroke_color=sentiment_color,
-                                           scale=scales,
-                                           fill_opacity=0.5,
-                                           stroke_opacity=0,
-                                           display_info_box=True,
-                                           info_box_content=cluster_info_text)
-        map_fig.add_layer(cluster_layer)
-
     def tweet_prep(tweet_data):
         lat_long = geocode_locations(tweet_data)
         tweet_data['Latitude'] = lat_long[0]
@@ -275,8 +221,7 @@ def plotting_points(request):
     }
 
     m = gmaps.figure(zoom_level=1, layout=figure_layout, center=[0, 0])
-    countries_geojson = gmaps.geojson_geometries.load_geometry(
-        'countries-high-resolution')
+    # countries_geojson = gmaps.geojson_geometries.load_geometry('countries-high-resolution')
 
     # tweet_data = pd.read_csv('tweet_data.csv')
     tweet_data1 = ma()
@@ -340,7 +285,7 @@ def cluster_map(request):
                         tweet.user.location, tweet.created_at, tweet.text] for tweet in tweets]
         # Converting the data to Pandas DataFrame
         tweets_df = pd.DataFrame(tweets_list, columns=[
-                                 'UserID', 'Name', 'TweetID', 'User Location', 'Date and Time', 'Text'])
+            'UserID', 'Name', 'TweetID', 'User Location', 'Date and Time', 'Text'])
         return tweets_df
 
     # function to perform Sentiment Analysis
@@ -390,33 +335,6 @@ def cluster_map(request):
 
         return gmaps_color
 
-    def scatter_plot(map_fig, tweets):
-        translator = Translator()
-        info_box_template = """
-                <d1>
-                <dt>{Country}</dt>
-                <dt>-----------------------</dt>
-                <dt>{Tweet}</dt>
-                <dt>-----------------------</dt>
-                <dt>Sentiment</dt><dd>{Sentiment}</dd>
-                </d1>
-
-                """
-
-        cluster_info_text = [info_box_template.format(Sentiment=str(tweets['compound'][i]),
-                                                      Tweet=translator.translate(
-                                                          (tweets['Text'][i])).text,
-                                                      Country=str(tweets['Country'][i])) for i in range(len(tweets['compound']))]
-        colors = []
-        for i in range(len(tweets['User Location'])):
-            colors.append(calculate_color(tweets['compound'][i]))
-
-        locations = tweets[['Latitude', 'Longitude']]
-
-        scatter_layer = gmaps.symbol_layer(
-            locations, fill_color=colors, stroke_color=colors, info_box_content=cluster_info_text)
-        map_fig.add_layer(scatter_layer)
-
     def countries_syntax(countries):
         changes = {'United States of America': 'United States', 'United Republic of Tanzania': 'Tanzania',
                    'Guinea Bissau': 'Guinea-Bissau', 'The Gambia': 'Gambia', 'Ivory Coast': 'CÃ´te d\'Ivoire',
@@ -448,21 +366,6 @@ def cluster_map(request):
         countries = countries_syntax(countries)
         return countries
 
-    def geojson_layer(map_figure, countries_geojson, tweet_data):
-        countries = country_sentiment(tweet_data)
-        colors = []
-        for feature in countries_geojson['features']:
-            country_name = feature['properties']['name']
-            try:
-                color = calculate_color(countries[country_name])
-            except KeyError:
-                color = '#e0e0e0'
-            colors.append(color)
-
-        gini_layer = gmaps.geojson_layer(countries_geojson, fill_color=colors, stroke_color='#000000',
-                                         fill_opacity=0.8, stroke_weight=0.2)
-        map_figure.add_layer(gini_layer)
-
     def geocode_locations(tweet_data1):
         geolocator = Nominatim(user_agent="plotting_points", timeout=300)
         lat, long, country = [], [], []
@@ -484,12 +387,6 @@ def cluster_map(request):
                     country.append(None)
 
         return lat, long, country
-
-    def heatmap_layer(map_figure, tweets):
-        heatmap = gmaps.heatmap_layer(tweets[['Latitude', 'Longitude']])
-        heatmap.point_radius = 20
-        heatmap.max_intensity = 25
-        map_figure.add_layer(heatmap)
 
     def create_clusters(locations, number_clusters):
         kmeans = KMeans(n_clusters=number_clusters,
@@ -520,7 +417,8 @@ def cluster_map(request):
 
     def cluster_map(map_fig, tweets, number_clusters):
         clusters = create_clusters(tweets, number_clusters)
-        cluster_data = clusters[1]
+        # print(clusters)
+        cluster_indicies = clusters[1]
         clusters = clusters[0]
         sentiment_color = [calculate_color(color)
                            for color in clusters['Sentiment']]
@@ -536,7 +434,7 @@ def cluster_map(request):
         <d1>
         <dt>Location</dt><dd>[{Latitude} , {Longitude}]</dd>
         <dt>Sentiment</dt><dd>{Sentiment}</dd>
-        <button type="button" id= {i} onclick =javascript:alert("test");>Details</button>
+        <button type="button" id= {i} onclick="";>Details</button>
         </d1>
     
         """
@@ -555,7 +453,7 @@ def cluster_map(request):
                                            display_info_box=True,
                                            info_box_content=cluster_info_text)
         map_fig.add_layer(cluster_layer)
-        return cluster_data
+        return cluster_indicies
 
     def tweet_prep(tweet_data):
         lat_long = geocode_locations(tweet_data)
@@ -575,22 +473,19 @@ def cluster_map(request):
     }
 
     m = gmaps.figure(zoom_level=1, layout=figure_layout, center=[0, 0])
-    countries_geojson = gmaps.geojson_geometries.load_geometry(
-        'countries-high-resolution')
+    # countries_geojson = gmaps.geojson_geometries.load_geometry('countries-high-resolution')
 
     # tweet_data = pd.read_csv('tweet_data.csv')
     tweet_data1 = ma()
     # tweet_data = db.query("SELECT * FROM Tweets WHERE rowid >= 10110 AND rowid <= 10460")
     tweet_data1 = tweet_prep(tweet_data1)
     tweet_data1.to_csv('templates/tweet_data.csv')
-
+    print(tweet_data1)
     # geojson_layer(m, countries_geojson, tweet_data1)
-    cluster_info = cluster_map(m, tweet_data1, int(
-        math.sqrt(len(tweet_data1.index))))
-    # details = []
+    # cluster_info = cluster_map(m, tweet_data1, int(math.sqrt(len(tweet_data1.index))))
 
     # scatter_plot(m, tweet_data1)
-
+    # print(details)
     embed_minimal_html('templates/cluster.html', views=[m])
     return render(request, 'cluster.html')
 
@@ -673,33 +568,6 @@ def geo_json(request):
 
         return gmaps_color
 
-    def scatter_plot(map_fig, tweets):
-        translator = Translator()
-        info_box_template = """
-                <d1>
-                <dt>{Country}</dt>
-                <dt>-----------------------</dt>
-                <dt>{Tweet}</dt>
-                <dt>-----------------------</dt>
-                <dt>Sentiment</dt><dd>{Sentiment}</dd>
-                </d1>
-
-                """
-
-        cluster_info_text = [info_box_template.format(Sentiment=str(tweets['compound'][i]),
-                                                      Tweet=translator.translate(
-                                                          (tweets['Text'][i])).text,
-                                                      Country=str(tweets['Country'][i])) for i in range(len(tweets['compound']))]
-        colors = []
-        for i in range(len(tweets['User Location'])):
-            colors.append(calculate_color(tweets['compound'][i]))
-
-        locations = tweets[['Latitude', 'Longitude']]
-
-        scatter_layer = gmaps.symbol_layer(
-            locations, fill_color=colors, stroke_color=colors, info_box_content=cluster_info_text)
-        map_fig.add_layer(scatter_layer)
-
     def countries_syntax(countries):
         changes = {'United States of America': 'United States', 'United Republic of Tanzania': 'Tanzania',
                    'Guinea Bissau': 'Guinea-Bissau', 'The Gambia': 'Gambia', 'Ivory Coast': 'CÃ´te d\'Ivoire',
@@ -799,39 +667,6 @@ def geo_json(request):
             clusters = pd.DataFrame(clusters_data)
 
         return clusters
-
-    def cluster_map(map_fig, tweets, number_clusters):
-        clusters = create_clusters(tweets, number_clusters)
-        sentiment_color = [calculate_color(color)
-                           for color in clusters['Sentiment']]
-        scales = clusters['Size'].tolist()
-        minmax_scale(scales)
-        for i in range(len(scales)):
-            scales[i] = int(scales[i] / 3)
-            if scales[i] <= 0:
-                scales[i] = 1
-
-        info_box_template = """
-        <d1>
-        <dt>Sentiment</dt><dd>{Sentiment}</dd>
-        <button type="button">Stats</button>
-        <button type="button">Pie</button>
-        </d1>
-
-        """
-
-        cluster_info_text = [info_box_template.format(
-            Sentiment=i) for i in clusters['Sentiment']]
-
-        cluster_layer = gmaps.symbol_layer(clusters[['Lat', 'Long']],
-                                           fill_color=sentiment_color,
-                                           stroke_color=sentiment_color,
-                                           scale=scales,
-                                           fill_opacity=0.5,
-                                           stroke_opacity=0,
-                                           display_info_box=True,
-                                           info_box_content=cluster_info_text)
-        map_fig.add_layer(cluster_layer)
 
     def tweet_prep(tweet_data):
         lat_long = geocode_locations(tweet_data)
