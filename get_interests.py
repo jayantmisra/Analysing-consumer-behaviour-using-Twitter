@@ -7,7 +7,7 @@ def intrests(user_ids):
     male = 0
     female = 0
 
-    interest_list = pd.Series()
+    interest_list = pd.Series([],dtype ='float64')
     for user in user_ids:
         gender, interests = user_data.main(user)
         if gender == "male":
@@ -17,20 +17,24 @@ def intrests(user_ids):
         else:
             continue
 
-        for list in interests:
-            interest_list = pd.concat([interest_list,pd.Series(list)], ignore_index=True)
+        interest_list = pd.concat([interest_list,pd.Series(interests)], ignore_index=True)
 
-    print("percentafe of females: {f}".format(f = (female/(male+female))))
-    print(interest_list)
+    #print(interest_list)
     with open('genders.csv','w') as fd:
         fd.write("{f} {m}".format(f=female,m=male))
+
+    for index in range(0,interest_list.size):
+        if interest_list[index] == "url" or interest_list[index] == "rt" or interest_list[index] == "uber":
+            interest_list.drop([index],inplace=True)
+    
     counts = interest_list.value_counts()
+    print(counts)
     counts.to_csv('counts.csv')
 
  
 
 def get_user_ids():
-    records = db.query("SELECT * FROM Tweets WHERE rowid >=0 AND rowid <= 100")
+    records = db.query("SELECT * FROM Tweets WHERE rowid >=11000 AND rowid <= 12000")
     print(records)
     return records['UserID']
 

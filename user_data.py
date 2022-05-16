@@ -17,7 +17,7 @@ import nltk
 from nltk.corpus import stopwords, wordnet
 from nltk.stem import WordNetLemmatizer
 from nltk.util import ngrams
-import nltk
+
 nltk.download('averaged_perceptron_tagger')
 nltk.download('wordnet')
 nltk.download('stopwords')
@@ -70,10 +70,10 @@ def predict_user_gender(token):
 def user_tweets(user_id):
     response = auth().get_users_tweets(user_id, max_results=100)
     tweets = response.data
-<<<<<<< HEAD
+
     tweets_list = [[tweet.id, tweet.text] for tweet in tweets]
     tweets_df = pd.DataFrame(tweets_list, columns=['TweetID', 'Text'])
-=======
+
     tweets_list = [[tweet.id,tweet.text] for tweet in tweets]
     tweets_df = pd.DataFrame(tweets_list, columns = ['TweetID','Text'])
     #Translates tweets into english
@@ -81,7 +81,7 @@ def user_tweets(user_id):
     for column in range(0,tweets_df['Text'].size):
         tweets_df.loc[column,'Text'] = translator.translate(tweets_df['Text'].iloc[column]).text
     
->>>>>>> 2fd3f3ad99c5306ac8761640633d132b6d28df2b
+
     return tweets_df
 
 
@@ -105,17 +105,27 @@ def get_keywords(tweets_df):
     tweets_df['keywords'] = tweets_df['no_url'].apply(get_hotwords)
     return tweets_df
 
+def nouns(keywords):
+    subjects = []
+    for word in keywords:
+        doc = nlp(word)
+        if(doc[0].tag_ == 'NNP'):
+            subjects.append(word)
+        else:
+            continue
 
-<<<<<<< HEAD
+    return subjects
+
+
 def main():
     user_id = "1364148883329220609"  # male
     user_id = "1040587167230124032"  # female
 
     #user_id = input("Enter the user id:")
-=======
+
 def main(user_id):
     
->>>>>>> 2fd3f3ad99c5306ac8761640633d132b6d28df2b
+
 
     tweets_df = user_tweets(user_id)
     tweets_k = get_keywords(tweets_df)
@@ -123,21 +133,41 @@ def main(user_id):
     token = list(
         set([interest for sublist in interests for interest in sublist]))
     gender = predict_user_gender(token)
-<<<<<<< HEAD
+
 
 
 # calling the main function
 if __name__ == "__main__":
     main()
-=======
+
     gender = gender.to_string().split()
     return gender[1], interests
+
+    try:
+        tweets_df = user_tweets(user_id)
+        tweets_k = get_keywords(tweets_df)
+        interests = tweets_k['keywords'].tolist()
+        tweets_k['subjects'] = tweets_df['keywords'].apply(nouns)
+        subjects = tweets_k['subjects'].tolist()
+        token = list(set([interest for sublist in interests for interest in sublist]))
+        subjects = list(set([subject for sublist in subjects for subject in sublist]))
+        print(len(token))
+        print(len(subjects))
+        gender = predict_user_gender(token)
+        gender = gender.to_string().split()
+        return gender[1], subjects
+    except Exception as e:
+        print("Error while getting intrests")
+        print(e)
+        return "unkown", []
+
     
 # calling the main function
 if __name__ ==  "__main__":
-    user_id = "1364148883329220609" # male
-    user_id = "1040587167230124032" # female
+    # just for test
+    user_id = "" # male
+    user_id = "" # female
     
     #user_id = input("Enter the user id:")
     main(user_id)
->>>>>>> 2fd3f3ad99c5306ac8761640633d132b6d28df2b
+
